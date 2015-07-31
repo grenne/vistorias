@@ -1,0 +1,105 @@
+/* correção do tamanho da fonte de botões da classe ui-mini que está sendo sobrescrito pelo Bootstrap.css */
+.ui-btn.ui-mini {
+	font-size: 12.5px;
+}
+
+/* Swipe 2 required styles */
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+}
+/* END required styles */
+
+/* tira sombreado dos textos */
+body, .ui-btn {
+	text-shadow: none !important;
+}
+
+.ponto-icone-semocorrencia {
+    color: #51A351;
+}
+
+.ponto-icone-hora_extra {
+    color: green;
+}
+
+.ponto-icone-atraso, .ponto-icone-critica, .ponto-icone-falta {
+    color: #C00;
+}
+
+.div-carregando {
+    opacity: 0.4;
+}
+
+.loader-div {
+    opacity: 0.18;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -23px;
+    margin-top: -23px;
+}
+
+.ui-collapsible-content {
+    padding: .5em !important;
+}
+
+.ui-content {
+    padding: .5em;
+}
+
+#carregando {
+	display: none;
+    text-align:center;
+    margin-top: 10%;
+}
+
+.separador {
+    clear: both;
+    margin: 20px 0;
+}
+
+/* Celulares */
+/* .ui-btn-icon-left { */
+/*     padding-left: 3.5em !important; */
+/* } */
+
+/* Tablets */
+@media (min-width: 768px) {    
+    .ui-btn-icon-left {
+        padding-left: 2.5em !important;
+    }      
+}
+ 
+ #menu-correcao-iphone-5 {
+ 	display: none;
+ }
+ 
+/* IPhone 5 apenas: empurra header um pouco para baixo */
+@media screen and (device-aspect-ratio: 40/71) {
+	#btn-mostra-menu {
+		top: 20px !important;
+	}
+	
+	#menu-correcao-iphone-5 {
+		height: 15px;
+		display: block;
+		background-color: #E6E6E6;		
+	}
+	
+	.ui-header-fixed {
+		padding-top: 15px !important;
+		border: none !important;
+		top: 0;		
+	}	
+} 
