@@ -39,21 +39,21 @@ function carregaConfiguracao() {
     
     // configuração não está persistida no aparelho ou está incompleta, 
     // redireciona para página de configuração
-    if(localStorage.urlServidor == null 
-        || localStorage.idFun == null
-        || localStorage.idPes == null
-        || localStorage.eGestor == null) {
-    	
-        if(window.location.pathname.indexOf(configPag) == -1) {
-        	document.location.href = configPag;
-        }   
-        
-    } else {
-        window.urlServidor = localStorage.urlServidor;
-        window.idFunLogado = localStorage.idFun;
-        window.idPesLogada = localStorage.idPes;
-        window.eGestor = localStorage.eGestor;
-    }
+//    if(localStorage.urlServidor == null 
+//        || localStorage.idFun == null
+//        || localStorage.idPes == null
+//        || localStorage.eGestor == null) {
+//    	
+//        if(window.location.pathname.indexOf(configPag) == -1) {
+//        	document.location.href = configPag;
+//        }   
+//        
+//    } else {
+//        window.urlServidor = localStorage.urlServidor;
+//        window.idFunLogado = localStorage.idFun;
+//        window.idPesLogada = localStorage.idPes;
+//        window.eGestor = localStorage.eGestor;
+//    }
 }
 
 

@@ -52,7 +52,7 @@ function redirecionar() {
 	if (typeof localStorage.idFun == 'undefined') {
 		console
 				.info("Não foi encontrado id do funcionário logado no storage. Redirecionando para página de configuração.");
-		document.location.replace("config.html");
+		document.location.replace("vistorias.html");
 	} else {
 		document.location.replace("funcionario-detalhes.html?fun="
 				+ localStorage.idFun);
