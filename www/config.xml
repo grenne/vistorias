@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.glr.populis" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.grenne" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Populis</name>
     <description>
         Aplicativo do Populis Mobile
     </description>
-    <author email="desenv@glr.com.br" href="http://www.glr.com.br">
-        Equipe de Desenvolvimento - GLR
+    <author email="grenneglr@gmail.com" href="">
+        Grenne Reis
     </author>
     <content src="index.html" />
     <access origin="*" />
