@@ -1,11 +1,131 @@
-/* Funcion��rio Detalhes */
+/* Vistoria Detalhes */
 $(document).ready(function() {    
-    // window.idFuncionario = $.parametroUrl("fun");
+	// window.idFuncionario = $.parametroUrl("fun");
+	montaPagina();
     iniciaSnapper();
-    iniciaAcoes();     
-    // carregaDetalhesDoFuncionario();
-   
+    iniciaAcoes();        
 });
+
+
+/* montagem da pagina */ 
+function montaPagina() {
+	$(function(){
+		$.getJSON("json/tela.json", function(data){
+			$.each(data.CAMPOS, function(z, item){
+				if (item.tipo == 'input_texto') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'
+					);
+				}else if(item.tipo == 'input_inteiro') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '" class="input-number inteiro"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_decimal') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '" class="input-number decimal"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_data') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"  placeholder="__/__/____" class="input-number data"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_cpf') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '" placeholder="___.___.___-__" class="input-number cpf"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_cnpj') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"  placeholder="___.___.___.___/__" class="input-number cnpj"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_celular') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"  placeholder="(___)_____.____" class="input-number celular"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_telefone') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"  placeholder="(___)____.____" class="input-number telefone"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				}else if(item.tipo == 'input_placa') {
+					$("#tabAcessorios").append(
+						'<tr>' +
+							'<td class="detalhes-label">' + item.label + ':</td>' +
+							'<td>' +
+								'<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset input-number-div">' + 
+		                        	'<input type="text" name="' + item.label.replace(" ", "") + z + '" id="' + item.label.replace(" ", "") + z + '" value="' + item.valor + '"  placeholder="___-____" class="input-number placa"/>' +
+		                        '</div>' +
+							'</td>' +
+						'</tr>'					
+					);
+				};
+			});
+			$('.mesano').mask('00/0000');
+			$('.data').mask('00/00/0000');
+			$('.cpf').mask('000.000.000-00');
+			$('.cnpj').mask('000.000.000.000/0000');
+			$('.celular').mask('(000)00000.0000');
+			$('.telefone').mask('(000)0000.0000');
+			$('.inteiro').mask('000.000.000.000');
+			$('.decimal').mask('000.000.000.000,00');
+			$('.placa').mask('XXX-0000');
+			$('.placa').mask('XXX-0000', {translation:  {'X': {pattern: /[A-Z]/}}});
+		});	
+	});
+};
 
 /* Utilizada biblioteca Swipe.js: http://swipejs.com/ */
 function iniciaAcoes() {
@@ -18,13 +138,17 @@ function iniciaAcoes() {
       // stopPropagation: true,
       callback: function(index, element) {
         if(index == 0) {
-            $('.titulo-pagina').html('Vistoriador'); 
+            $('.titulo-pagina').html('Dados Vistoria'); 
         } else if (index == 1) {
-            $('.titulo-pagina').html('Distribuidor');            
+            $('.titulo-pagina').html('Dados Proprietário');            
       	} else if (index == 2) {
-      		$('.titulo-pagina').html('Vistoriador');            
+      		$('.titulo-pagina').html('Dados Veículo');            
       	} else if (index == 3) {
-      		$('.titulo-pagina').html('Distribuidor');
+      		$('.titulo-pagina').html('Acessórios');
+      	} else if (index == 4) {
+      		$('.titulo-pagina').html('Vistoria');
+      	} else if (index == 5) {
+      		$('.titulo-pagina').html('Fotos');
       	}
       }
       // transitionEnd: function(index, element) {}
@@ -73,7 +197,7 @@ function carregaDetalhesDoFuncionario() {
         }
         
     });
-}
+};
 
 function carregaDadosPessoais() {
     $.ajaxPop({
@@ -255,4 +379,4 @@ function iniciaSnapper() {
     $('.snap-drawer').on('click', '.fecha-snapper', function () {
         snapper.close();
     });
-}
+};

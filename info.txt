@@ -17,8 +17,8 @@ Current Config.xml
     <description>
         Aplicativo do vistorias Mobile
     </description>
-    <author email="desenv@glr.com.br" href="http://www.glr.com.br">
-        Equipe de Desenvolvimento - GLR
+    <author email="grenneglr@gmail" href="#">
+        3KD 
     </author>
     <content src="index.html" />
     <access origin="*" />

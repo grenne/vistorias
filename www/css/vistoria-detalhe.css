@@ -87,6 +87,13 @@ body {
 .dados-contato {
 	display: none;
 }
+.input-number-div {
+	width: 12em;
+	max-width: 80%;
+}
+.input-number {
+	text-align: right !important;
+}
 
 /* Telas pequenas */
 @media ( max-width : 768px) {

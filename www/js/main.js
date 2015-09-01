@@ -94,7 +94,7 @@ function colocaPainelEsquerda() {
                     'data-rel="close">Fechar</a></li>' +
                 '<li><a ' +
                     'href="funcionario-detalhes.html?fun=' + localStorage.idFun + '"' +
-                    'rel="external"' +
+                   // 'rel="external"' +
                     'data-transition="flip">Página inicial</a></li>' +
                 '<li><a ' +
                     'href="meus-pagamentos.html"' +

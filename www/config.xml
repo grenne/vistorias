@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.grenne" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Populis</name>
+    <name>Vistoria</name>
     <description>
         Aplicativo do Populis Mobile
     </description>
-    <author email="grenneglr@gmail.com" href="">
+    <author email="grenneglr@gmail.com" href="#">
         Grenne Reis
     </author>
     <content src="index.html" />
