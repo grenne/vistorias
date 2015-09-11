@@ -85,7 +85,7 @@ function colocaPainelEsquerda() {
             'data-role="panel"' +
             'data-position-fixed="true" ' +
             'data-display="push" ' +
-            'data-theme="a" ' +
+            'data-theme="e" ' +
             'id="nav-panel">' +
             '<ul data-role="listview">' +
 	            '<li data-role="list-divider" id="menu-correcao-iphone-5"></li>' +            

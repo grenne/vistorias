@@ -1,71 +1,271 @@
-{"CAMPOS":[
 {
-"tipo":"input_inteiro",
-"label":"Inteiro",
-"valor":"124123"
-},
-{
-"tipo":"input_placa",
-"label":"Placa",
-"valor":"FCD1212"
-},
-{
-"tipo":"input_decimal",
-"label":"decimal",
-"valor":"234232.12"
-},
-{
-"tipo":"input_texto",
-"label":"Texto",
-"valor":"234232"
-},
-{
-"tipo":"input_data",
-"label":"Data",
-"valor":"23082015"
-},
-{
-"tipo":"input_celular",
-"label":"Celular",
-"valor":"011981965640"
-},
-{
-"tipo":"input_telefone",
-"label":"Telefone",
-"valor":"01181965640"
-},
-{
-"tipo":"input_cpf",
-"label":"CPF",
-"valor":"02868171877"
-},
-{
-"tipo":"input_cnpj",
-"label":"CNPJ",
-"valor":"02868171877"
-},
-{
-"tipo":"input_radio",
-"label":"Campo 04",
-"valor":"opcao 01",
-"opcoes":["opcao 01","opcao 02","opcao 03"] 
-},
-{
-"tipo":"input_select",
-"label":"Campo 05",
-"valor":"opcao 01",
-"opcoes":["opcao 01", "opcao 02", "opcao 03", "opcao 04"]
-},
-{
-"label":"Campo 06",
-"valor":"234232"
-},
-{
-"label":"Campo 07",
-"valor":"234232"
-},
-{
-"label":"Campo 08",
-"valor":"234232"
+  "panel": 
+  [
+    {
+      "tipo": "swipe",
+      "label": "Dados Vistoria",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "FUI"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_placa",
+          "label": "Placa",
+          "valor": "FCD1212"
+        },
+        {
+          "tipo": "input_decimal",
+          "label": "decimal",
+          "valor": "234232.12"
+        },
+        {
+          "tipo": "input_texto",
+          "label": "Texto",
+          "valor": "234232"
+        },
+        {
+          "tipo": "input_data",
+          "label": "Data",
+          "valor": "23082015"
+        },
+        {
+          "tipo": "input_celular",
+          "label": "Celular",
+          "valor": "011981965640"
+        },
+        {
+          "tipo": "input_telefone",
+          "label": "Telefone",
+          "valor": "01181965640"
+        },
+        {
+          "tipo": "input_cpf",
+          "label": "CPF",
+          "valor": "02868171877"
+        },
+        {
+          "tipo": "input_cnpj",
+          "label": "CNPJ",
+          "valor": "02868171877"
+        },
+        {
+          "tipo": "input_select",
+          "label": "Campo 04",
+          "valor": "opcao 03",
+          "opcoes": 
+          [
+            {
+              "label": "opcao 01"
+            },
+            {
+              "label": "opcao 02"
+            },
+            {
+              "label": "opcao 03"
+            }
+          ]
+        },
+        {
+          "tipo": "input_radio",
+          "label": "Campo 05",
+          "valor": "",
+          "opcoes": 
+          [
+            {
+              "label": "radio opcao 01"
+            },
+            {
+              "label": "radio opcao 02"
+            },
+            {
+              "label": "radio opcao 03"
+            }
+          ]
+        },
+        {
+          "tipo": "input_data",
+          "label": "Campo 06",
+          "valor": "23042015"
+        },
+        {
+          "tipo": "input_data",
+          "label": "Campo 06",
+          "valor": "23042015"
+        },
+        {
+          "tipo": "input_data",
+          "label": "Campo 06",
+          "valor": "23042015"
+        }
+      ]
+    },
+    {
+      "tipo": "swipe",
+      "label": "Dados Proprietario",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        }
+      ]
+    },
+    {
+      "tipo": "swipe",
+      "label": "Dados Veículo",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        }
+      ]
+    },
+    {
+      "tipo": "swipe",
+      "label": "Acessorios",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        }
+      ]
+    },
+    {
+      "tipo": "swipe",
+      "label": "Vistoria",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        }
+      ]
+    },
+    {
+      "tipo": "swipe",
+      "label": "Fotos",
+      "fields": 
+      [
+        {
+          "tipo": "input_checkbox",
+          "label": "Checkbox",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        },
+        {
+          "tipo": "input_inteiro",
+          "label": "Inteiro",
+          "valor": "124123"
+        }
+      ]
+    }
+  ]
 }
-]}

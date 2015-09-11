@@ -46,7 +46,7 @@ $(document).ready(function() {
 */
     var linha = ''+
    		'<div data-idFun="' + 1 + '">' + 
-   			'<a href="#videos" data-transition="flip" class="placaVeiculo">' + 'Placa FCZ 9212' + '</a>' +
+   			'<a href="funcionario-detalhes.html"  rel="external" data-transition="flip" class="placaVeiculo">' + 'Placa FCZ 9212' + '</a>' +
    		'</div>';
     $("#listaVistorias").append(linha);
     linha = ''+
