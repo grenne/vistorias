@@ -1,16 +1,16 @@
-package com.3KD.services;
+package com.TKiDe.services;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.FileWriter;
+import java.io.IOException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class VistoriaLista {
 
 	@SuppressWarnings("unchecked") 
-	public static void main(String[] args) { //Cria um Objeto JSON JSONObject 
-		jsonObject = new JSONObject(); FileWriter writeFile = null; //Armazena dados em um Objeto JSON 
+	public JSONObject ObterLista() { //Cria um Objeto JSON JSONObject 
+		JSONObject jsonObject = new JSONObject(); 
+		FileWriter writeFile = null; //Armazena dados em um Objeto JSON 
 		jsonObject.put("nome", "Allan"); 
 		jsonObject.put("sobrenome", "Romanato"); 
 		jsonObject.put("pais", "Brasil"); 
@@ -23,7 +23,7 @@ public class VistoriaLista {
 		catch(IOException e){ 
 			e.printStackTrace(); 
 		} //Imprimne na Tela o Objeto JSON para vizualização 
-		System.out.println(jsonObject); } 
-		}
-	};
+		System.out.println(jsonObject);
+		return jsonObject;
+	}; 
 };

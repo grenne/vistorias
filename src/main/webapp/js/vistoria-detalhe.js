@@ -1,8 +1,26 @@
 /* Vistoria Detalhes */
 $(document).ready(function() {    
 	// window.idFuncionario = $.parametroUrl("fun");
-	alert ("inicio montagem");
+	console.log ("iniciooo montagem");
+	$(function(){
+		$.ajax(
+				{
+					type : "GET",
+					url : '/services/VistoriaLista',
+					dataType : "json",
+					context : this,
+					success : function(vistorias) {
+//						$.each(vistorias, function(i, vis) {
+							console.log ("dentro do Ajax");
+//						});
+					}
+				}).error(function(e) {
+					console.log ("deu erro");
+			mostraErros([ e.statusText ]);
+		})
+	});
 
+/*
 	$(function(){
 		$.ajax(
 				{
@@ -19,7 +37,7 @@ $(document).ready(function() {
 			mostraErros([ e.statusText ]);
 		})
 	};
-/*
+
 		$.ajax({
             url: "http://localhost:8080/www/json/tela.json",
             contentType: "application/json; charset=utf-8",
@@ -73,13 +91,13 @@ $(document).ready(function() {
 	var data = JSON.parse(text);
 	var panelLabelList = [];
 	$.each(data.panel, function(i, panel){
-		alert ("painel");
+		console.log ("painel");
 		var panelId = panel.label.replace(" ", "") + i;
 		var panelLabel = panel.label;
 		panelLabelList[i] = panel.label;
 		inicioPanel(panelId, panelLabel, i, panel);
 		$.each(panel.fields, function(z, item){
-			alert("campo");
+			console.log("campo");
 			montaCampos(i, panelId, z, item);
 		});
 		finalPanel(panelId, panelLabel, i, panel);
