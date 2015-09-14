@@ -2,8 +2,24 @@
 $(document).ready(function() {    
 	// window.idFuncionario = $.parametroUrl("fun");
 	alert ("inicio montagem");
-/*
+
 	$(function(){
+		$.ajax(
+				{
+					type : "GET",
+					url : '/populisII-web/rest/posicao/busca?maxResultados=_1&amp;idVisao=' + idVisao,
+					dataType : "json",
+					context : this,
+					success : function(vistorias) {
+						$.each(vistorias, function(i, vis) {
+							alert ("vistorias");
+						});
+					}
+				}).error(function(e) {
+			mostraErros([ e.statusText ]);
+		})
+	};
+/*
 		$.ajax({
             url: "http://localhost:8080/www/json/tela.json",
             contentType: "application/json; charset=utf-8",
