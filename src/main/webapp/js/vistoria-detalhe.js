@@ -3,56 +3,21 @@ $(document).ready(function() {
 	// window.idFuncionario = $.parametroUrl("fun");
 	console.log ("iniciooo montagem");
 	$(function(){
-		$.ajax(
-				{
-					type : "GET",
-					url : '/services/VistoriaLista',
-					dataType : "json",
-					context : this,
-					success : function(vistorias) {
-//						$.each(vistorias, function(i, vis) {
-							console.log ("dentro do Ajax");
-//						});
-					}
-				}).error(function(e) {
-					console.log ("deu erro");
-			mostraErros([ e.statusText ]);
-		})
-	});
-
-/*
-	$(function(){
-		$.ajax(
-				{
-					type : "GET",
-					url : '/populisII-web/rest/posicao/busca?maxResultados=_1&amp;idVisao=' + idVisao,
-					dataType : "json",
-					context : this,
-					success : function(vistorias) {
-						$.each(vistorias, function(i, vis) {
-							alert ("vistorias");
-						});
-					}
-				}).error(function(e) {
-			mostraErros([ e.statusText ]);
-		})
-	};
-
 		$.ajax({
-            url: "http://localhost:8080/www/json/tela.json",
+            url: "http://localhost:8080/vistoria/json/tela.json",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(data) {
-//            localStorage.setItem("dadosSaved", JSON.stringify(data));    
+            localStorage.setItem("dadosSaved", JSON.stringify(data));    
 			var panelLabelList = [];
 			$.each(data.panel, function(i, panel){
-				alert ("painel");
 				var panelId = panel.label.replace(" ", "") + i;
 				var panelLabel = panel.label;
 				panelLabelList[i] = panel.label;
+				console.log ("painel " + panel.label);
 				inicioPanel(panelId, panelLabel, i, panel);
 				$.each(panel.fields, function(z, item){
-					alert("campo");
+					console.log("campo " + z);
 					montaCampos(i, panelId, z, item);
 				});
 				finalPanel(panelId, panelLabel, i, panel);
@@ -65,49 +30,7 @@ $(document).ready(function() {
             }
 		});
 	});
-*/
-
-	var text = 
-			'{' +
-			  '"panel": [' +
-			    '{' +
-			      '"tipo": "swipe",' +
-			      '"label": "Dados Vistoria",' +
-			      '"fields": [' +
-			        '{' +
-			          '"tipo": "input_checkbox",' +
-			          '"label": "Checkbox",' +
-			          '"valor": "FUI"' +
-			        '},' +
-			        '{' +
-			          '"tipo": "input_inteiro",' +
-			          '"label": "Inteiro",' +
-			          '"valor": "124123"' +
-			        '}' +
-			      ']' +
-			    '}' +
-			  ']' +
-			'}';
-	var data = JSON.parse(text);
-	var panelLabelList = [];
-	$.each(data.panel, function(i, panel){
-		console.log ("painel");
-		var panelId = panel.label.replace(" ", "") + i;
-		var panelLabel = panel.label;
-		panelLabelList[i] = panel.label;
-		inicioPanel(panelId, panelLabel, i, panel);
-		$.each(panel.fields, function(z, item){
-			console.log("campo");
-			montaCampos(i, panelId, z, item);
-		});
-		finalPanel(panelId, panelLabel, i, panel);
-	});
-    iniciaSnapper();
-    iniciaAcoes(panelLabelList);        
-	inicializaWindow();
-
 });
-
 
 function inicioPanel(panelId, panelLabel, i, panel) {
 	$("#paineis").append(
@@ -192,10 +115,10 @@ function montaCampos(i, panelId, z, item) {
 				var text = localStorage.getItem("dadosSaved");
 				obj = JSON.parse(text);
 				obj.panel[i].fields[z].valor =  $("#" + labelRadioId).val();
-//		        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
-//				var text1 = localStorage.getItem("dadosSaved");
-//				obj1 = JSON.parse(text1);
-//				console.log (obj1.panel[i].fields[z].valor);
+		        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
+				var text1 = localStorage.getItem("dadosSaved");
+				obj1 = JSON.parse(text1);
+				console.log (obj1.panel[i].fields[z].valor);
 			});
 		});
 		$("#td-textinput-" + labelId).append(
@@ -225,7 +148,7 @@ function montaCampos(i, panelId, z, item) {
 			var text = localStorage.getItem("dadosSaved");
 			obj = JSON.parse(text);
 			obj.panel[i].fields[z].valor =  $("#select-" + labelId).val();
-//	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
+	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
 			var text1 = localStorage.getItem("dadosSaved");
 			obj1 = JSON.parse(text1);
 //			console.log (obj1.panel[i].fields[z].valor);				

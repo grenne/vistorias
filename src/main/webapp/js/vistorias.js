@@ -11,23 +11,23 @@ $(document).ready(function() {
 function iniciaAcoes() {
     var elem = document.getElementById('swipe-acoes');
     window.mySwipe = Swipe(elem, {
-      startSlide: 0,
-      // auto: 3000,
-      // continuous: true,
-      // disableScroll: true,
-      // stopPropagation: true,
-      callback: function(index, element) {
-        if(index == 0) {
-            $('.titulo-pagina').html('Vistoriador'); 
-        } else if (index == 1) {
-            $('.titulo-pagina').html('Distribuidor');            
-      	} else if (index == 2) {
-      		$('.titulo-pagina').html('Vistoriador');            
-      	} else if (index == 3) {
-      		$('.titulo-pagina').html('Distribuidor');
-      	}
-      }
-      // transitionEnd: function(index, element) {}
+		startSlide: 0,
+		// auto: 3000,
+		// continuous: true,
+		// disableScroll: true,
+		// stopPropagation: true,
+		callback: function(index, element) {
+			if(index == 0) {
+				$('.titulo-pagina').html('Vistoriador');
+			} else if (index == 1) {
+				$('.titulo-pagina').html('Distribuidor');
+			} else if (index == 2) {
+				$('.titulo-pagina').html('Vistoriador');
+			} else if (index == 3) {
+				$('.titulo-pagina').html('Distribuidor');
+			}
+		}
+		// transitionEnd: function(index, element) {}
     });
     
     $(document).keydown(function(e){

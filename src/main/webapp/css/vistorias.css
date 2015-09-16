@@ -107,10 +107,10 @@ body {
 		max-width: 195px;
 		margin: auto;
 	}
-	.fundo {
-		background: url(images/vistoria.jpg);
-		background-size: 100%;
-		background-repeat: no-repeat;
+	.ui-page {
+		background: url(images/vistoria.jpg) !important;
+		background-size: 100% !important;
+		background-repeat: no-repeat !important;
 	}
 }
 /* Telas grandes */
@@ -128,7 +128,5 @@ body {
 	}
 	.pesfoto-detalhes {
 		width: 140px;
-	}
-	.fundo {
 	}
 }
