@@ -47,6 +47,7 @@ function onPhotoURISuccess(imageURI) {
 
 // A button will call this function
 function capturePhoto() {
+	alert ("aqui");
   // Take picture using device camera and retrieve image as base64-encoded string
   navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
     destinationType: destinationType.DATA_URL });
@@ -55,10 +56,17 @@ function capturePhoto() {
 // A button will call this function
 //
 function capturePhotoEdit() {
-  // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
-  navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-    destinationType: destinationType.DATA_URL });
-}
+	navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
+	    destinationType: Camera.DestinationType.FILE_URI }); 
+
+	function onSuccess(imageURI) {
+	    var image = document.getElementById('myImage');
+	    image.src = imageURI;
+	}
+
+	function onFail(message) {
+	    alert('Failed because: ' + message);
+	}}
 
 // A button will call this function
 //

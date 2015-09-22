@@ -2,7 +2,7 @@
 <widget id="br.com.grenne" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Vistoria</name>
     <description>
-        Aplicativo do Populis Mobile
+        Vistoria Mobile
     </description>
     <author email="grenneglr@gmail.com" href="#">
         Grenne Reis

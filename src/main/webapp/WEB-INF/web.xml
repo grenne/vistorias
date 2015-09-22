@@ -6,12 +6,6 @@
   <display-name>Vistoria JQuery Web Application</display-name>
   
   
-  <servlet>	
-  		<servlet-name>vistoria</servlet-name>
-		<display-name>vistoria</display-name>
-		<servlet-class>com.3KD.vistoria.servlet.VistoriaServlet</servlet-class>	
-	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>vistoria</servlet-name>
 		<url-pattern>/vistoria</url-pattern>

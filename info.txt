@@ -18,7 +18,7 @@ Current Config.xml
         Aplicativo do vistorias Mobile
     </description>
     <author email="grenneglr@gmail" href="#">
-        3KD 
+        TKiDe 
     </author>
     <content src="index.html" />
     <access origin="*" />

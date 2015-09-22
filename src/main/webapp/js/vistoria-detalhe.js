@@ -1,10 +1,19 @@
 /* Vistoria Detalhes */
 $(document).ready(function() {    
 	// window.idFuncionario = $.parametroUrl("fun");
-	console.log ("iniciooo montagem");
 	$(function(){
 		$.ajax({
-            url: "http://localhost:8080/vistoria/json/tela.json",
+            url: "http://localhost:8080/vistorias/rest/lista",
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            success: function(data) {
+			console.log ("deu certo " + JSON.stringify(data));
+            }
+		});
+	});
+	$(function(){
+		$.ajax({
+            url: "http://localhost:8080/vistorias/json/tela.json",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(data) {

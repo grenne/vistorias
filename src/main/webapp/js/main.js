@@ -93,23 +93,23 @@ function colocaPainelEsquerda() {
                     'href="#"' +
                     'data-rel="close">Fechar</a></li>' +
                 '<li><a ' +
-                    'href="funcionario-detalhes.html?fun=' + localStorage.idFun + '"' +
+                    'href="vistorias.html"' +
                    // 'rel="external"' +
                     'data-transition="flip">Página inicial</a></li>' +
                 '<li><a ' +
-                    'href="meus-pagamentos.html"' +
+                    'href="vistorias.html"' +
                     'rel="external"' +
                     'data-transition="flip">Meus Pagamentos</a></li>' +
                 '<li class="acao-gestor"><a ' +
-                    'href="funcionarios-lista.html"' +
+                    'href="vistorias.html"' +
                     'rel="external"' +
                     'data-transition="flip">Minha Equipe</a></li>' +
                 '<li class="acao-gestor"><a ' +
-                    'href="ponto-coletivo.html"' +
+                    'href="vistorias.html"' +
                     'rel="external"' +
                     'data-transition="flip">Tratamento do Ponto</a></li>' +
                 '<li class="acao-gestor"><a ' +
-                    'href="aprovacao-wf.html"' +
+                    'href="vistorias.html"' +
                     'rel="external"' +
                     'data-transition="flip">Aprovação de Workflow</a></li>' +
                 '<li><a ' +

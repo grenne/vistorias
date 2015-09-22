@@ -43,7 +43,9 @@ body {
 .ui-content {
 	padding: .5em;
 }
-
+.ui-page-header-fixed {
+    padding: 0em !important;
+}
 .nome-detalhes {
 	display: inline;
 	margin-left: 10px;
