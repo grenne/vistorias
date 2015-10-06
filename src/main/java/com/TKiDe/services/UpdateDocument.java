@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
@@ -23,10 +24,10 @@ import com.mongodb.MongoException;
 
 @Singleton
 // @Lock(LockType.READ)
-@Path("/documento")
-public class Vistoria {
+@Path("/updatedocument")
+public class UpdateDocument {
 
-	@GET
+	@POST
 	public JSONObject ObterVistoria(@QueryParam("id") String id) throws UnknownHostException, MongoException {
 		ObjectId _id = new ObjectId(id);
 		Mongo mongo = new Mongo();

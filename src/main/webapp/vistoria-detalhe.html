@@ -35,45 +35,34 @@
 <title>Vistoria</title>
 </head>
 <body>
-	<div id="conteudo-geral" class="ui-content" data-theme="d">
-		<div data-role="header" data-position="fixed" >
-			<h1 class="titulo-pagina">Vistoria</h1>
-			<a href="vistorias-lista.html" rel="external" data-icon="arrow-l" data-iconpos="notext"
-				id="btn-mostra-volta">Volta</a>
-		</div>
-		<!-- /header -->
-		<div role="main" class="ui-content jqm-content jqm-fullwidth"
-			style="margin-top: 30px;">
-
-			<div id="cabecalho-detalhes">
-				<div class="cabecalho-dados-container">
-					<h3>
-						<span class="fun-re">FCZ 9812</span>
-					</h3>
-					<div class="cabecalho-dados">
-						<span class="detalhes-label">Motivo: </span>
-						<span class="fun-turno">Novo</span>
-					</div>
-					<div class="cabecalho-dados">
-						<span class="detalhes-label">Endereço:</span> 
-						<span class="fun-hierarquia">Rua 7 de Abril 344 5. andar</span>
-					</div>
-				</div>
+	<form id="document">
+		<div id="conteudo-geral" class="ui-content" data-theme="d">
+			<div data-role="header" data-position="fixed">
+				<h1 class="titulo-pagina">Vistoria</h1>
+				<a href="vistorias-lista.html" rel="external" data-icon="arrow-l"
+					data-iconpos="notext" id="btn-mostra-volta">Volta</a>
 			</div>
+			<!-- /header -->
+			<div role="main" class="ui-content jqm-content jqm-fullwidth"
+				style="margin-top: 30px;">
 
-			<hr class="separador" />
-
-			<div id='swipe-acoes' class='swipe'>
-				<!-- montagem dos paineis -vistoria-detalhe.js/montaPagina() -->
-				<div class='swipe-wrap' id='paineis'>
-			
+				<div id="cabecalho-detalhes">
+					<div id="cabecalho" class="cabecalho-dados-container"></div>
 				</div>
-				<!-- swipe-wrap -->
+
+				<hr class="separador" />
+
+				<div id='swipe-acoes' class='swipe'>
+					<!-- montagem dos paineis -vistoria-detalhe.js/montaPagina() -->
+					<div class='swipe-wrap' id='paineis'></div>
+					<!-- swipe-wrap -->
+				</div>
+				<!-- swipe-acoes -->
 			</div>
-			<!-- swipe-acoes -->
+			<!-- main -->
+			<input type="submit" value="Enviar" class="submitButton" />
 		</div>
-		<!-- main -->
-	</div>
-	<!-- conteudo-geral, snap-content -->
+		<!-- conteudo-geral, snap-content -->
+	</form>
 </body>
 </html>

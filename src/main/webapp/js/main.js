@@ -256,4 +256,67 @@ function colocaPainelEsquerda() {
     	
     }
     
-})( jQuery );
+})
+
+function inicializaWindow() {	
+	$('input[type="text"]').textinput().trigger('create');
+	$('[type=checkbox]').checkboxradio().trigger('create');
+	$('.controlgroup').controlgroup().trigger('create');
+	$('.fieldcontain').fieldcontain().trigger('create');
+	$('.mesano').mask('00/0000');
+	$('.data').mask('00/00/0000');
+	$('.cpf').mask('000.000.000-00');
+	$('.cnpj').mask('000.000.000.000/0000');
+	$('.celular').mask('(000)00000.0000');
+	$('.telefone').mask('(000)0000.0000');
+	$('.inteiro').mask('000.000.000.000');
+	$('.decimal').mask('000.000.000.000,00');
+	$('.placa').mask('XXX-0000');
+	$('.placa').mask('XXX-0000', {translation:  {'X': {pattern: /[A-Z]/}}});
+};
+
+/* Utilizada biblioteca Swipe.js: http://swipejs.com/ */
+function iniciaAcoes(panelLabelList) {
+    var elem = document.getElementById('swipe-acoes');
+    window.mySwipe = Swipe(elem, {
+      startSlide: 0,
+      // auto: 3000,
+      // continuous: true,
+      // disableScroll: true,
+      // stopPropagation: true,
+      callback: function(index, element) {
+            $('.titulo-pagina').html(panelLabelList[index]); 
+      }
+      // transitionEnd: function(index, element) {}
+    });
+    
+    $(document).keydown(function(e){
+        if (e.keyCode == 39) { 
+           window.mySwipe.next();
+           return false;
+        } else if (e.keyCode == 37) { 
+           window.mySwipe.prev();
+           return false;
+        }
+    }); 
+    
+}
+
+/* Utilizada biblioteca Snap.js: https://github.com/jakiestfu/Snap.js/ */
+function iniciaSnapper() {
+    var snapper = new Snap({
+        element: document.getElementById('conteudo-geral'),
+        dragger: document.getElementById('cabecalho-detalhes')
+    });  
+    
+    snapper.on('animated', function() {
+        var estado = snapper.state().state;
+
+    });
+    
+    $('.snap-drawer').on('click', '.fecha-snapper', function () {
+        snapper.close();
+    });
+};
+
+( jQuery );

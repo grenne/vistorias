@@ -27,8 +27,16 @@
     font-weight: normal;
     font-size: 0.8em;
 }
-.placaVeiculo {
+.labelHeader {
+    color: blue;
+    font-weight: normal;
 	font-size: 0.9em;
+}
+.labelValue {
+    color: #000000 !important;
+    padding-left: 1em !important;
+    font-weight: normal;
+	font-size: 0.8em;
 }
 
 /* Tablets */
