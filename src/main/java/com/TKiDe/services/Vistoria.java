@@ -27,7 +27,8 @@ import com.mongodb.MongoException;
 public class Vistoria {
 
 	@GET
-	public JSONObject ObterVistoria(@QueryParam("id") String id) throws UnknownHostException, MongoException {
+	public JSONObject ObterVistoria(@QueryParam("id") String id, @QueryParam("nova") String nova) throws UnknownHostException, MongoException {
+		System.out.println("aqui:" + id + " nova:" + nova);
 		ObjectId _id = new ObjectId(id);
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("vistoria");

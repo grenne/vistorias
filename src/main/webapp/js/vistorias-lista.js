@@ -3,16 +3,16 @@
 $(document).ready(function() {
 	$(function() {
 		$.ajax({
-			url : "http://localhost:8080/vistorias/rest/lista",
+			url : "http://localhost:8080/vistorias/rest/documento/lista",
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {
 				var dados = JSON.stringify(data);
-				$.each(data, function(i, vistoria) {
-					var obj = JSON.stringify(vistoria);
+				$.each(data, function(i, documento) {
+					var obj = JSON.stringify(documento);
 					dados = JSON.parse(obj);
-					var id = vistoria._id;
-					$.each(vistoria.header, function(m, header) {
+					var id = documento._id;
+					$.each(documento.header, function(m, header) {
 						montaLinha(m, header, id);
 					});
 					var separador = '' + '<hr class="separador" />';

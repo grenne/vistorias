@@ -1,21 +1,31 @@
-/* Vistoria Detalhes */
+/* Documento Detalhes */
 $(document).ready(function() {   
+	// acertar o tamanha da tela
+	console.log ("$(window).height:()" + $(window).height());
+	console.log ("$(document).height():" + $(document).height()); 
+	console.log ("$(window).width():" + $(window).width());
+	console.log ("$(document).width():" + $(document).width());
+	var tipoDevice = mobileDetect();
+	console.log('You are using a mobile device!:' + tipoDevice);
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
 	console.log ("url" + url + " id:" + id);
 	$(function(){
 		$.ajax({
-            url: "http://localhost:8080/vistorias/rest/documento?id=" + id,
+            url: "http://localhost:8080/vistorias/rest/documento/obter?id=" + id,
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(data) {
 	            localStorage.setItem("dadosSaved", JSON.stringify(data));
-	        	$.each(data.vistoria.header, function(i, header) {
+	        	$.each(data.documento.header, function(i, header) {
 	        		montaLinhaCabecalho(header);
 	        	});
+				// obter o tamanho do cabecalho
+				console.log ("$(cabecalho-detalhes):" + $("#cabecalho-detalhes").height());
+				var heightCabecalho = $("#cabecalho-detalhes").height();
 				var panelLabelList = [];
-				$.each(data.vistoria.panel, function(i, panel){
+				$.each(data.documento.panel, function(i, panel){
 					var panelId = panel.label.replace(" ", "") + i;
 					var panelLabel = panel.label;
 					panelLabelList[i] = panel.label;
@@ -28,20 +38,24 @@ $(document).ready(function() {
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();
-				var text = localStorage.getItem("dadosSaved");
-				obj = JSON.parse(text);
             }
 		});
 	});
+	
+	// setar acao para botao submit
 	$( ".submitButton" ).bind( "click", function(event, ui) {
-		var text = localStorage.getItem("dadosSaved");
-		obj = JSON.parse(text);
+		var dataSaved = localStorage.getItem("dadosSaved");
+		var objJson = JSON.parse(dataSaved);
+		objJson.documento.id = id;
+		console.log (dataSaved);
 		$.ajax({
-            url: "http://localhost:8080/vistorias/rest/updatedocument?document=" + obj,
+			type: "POST",
+            url: "http://localhost:8080/vistorias/rest/documento/atualizar",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
+            data : JSON.stringify(objJson),
             success: function(data) {
-            	console-log ("terminou atualização");
+            	console.log ("terminou atualização id:" + id + " data:" + data);
             }
 		});
 		$(window.document.location).attr('href','vistorias-lista.html');
@@ -49,19 +63,22 @@ $(document).ready(function() {
 });
 
 function inicioPanel(panelId, panelLabel, i, panel) {
+	var heightDetalhes = $(window).height() - 135 - $("#cabecalho-detalhes").height();
+	var montaScroll = 'style="overflow: scroll; width: 200px; height:' + heightDetalhes + 'px;"';
+	console.log ("height detalhes:" + heightDetalhes);
 	$("#paineis").append(
 	'<!-- ' + panel.label + ' -->' +			
-	'<div id="panel-' + panelId + '">' +
+	'<div id="panel-' + panelId + '" ' + montaScroll + '">' +
 		'<h3 class="ui-bar ui-bar-d ui-corner-all">' + panel.label + '</h3>' +
 		'<div id="container-' + panelId + '" class=" ui-body ui-body-a ui-corner-all vistoria-detalhes">' +
 			'<table id="table-' + panelId + '">'
 	);
 };
 
-function montaCabecalho(vistoria) {
-	$.each(vistoria.header, function(i, header) {
+function montaCabecalho(documento) {
+	$.each(documento.header, function(i, header) {
 		console.log("entrou no each");
-		montaLinhaCabecalho(vistoria.header);
+		montaLinhaCabecalho(documento.header);
 	});
 };
 function montaLinhaCabecalho(header) {
@@ -87,73 +104,87 @@ function montaCampos(i, panelId, z, item) {
 	var labelRadioId = "";
 	inicioCampo(panelId, label, labelId);
 
-	if (item.tipo == 'input_texto') {
+	if (item.modelo == 'input_texto') {
 		$("#td-textinput-" + labelId).append(
-                	'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value inteiro"/>'
+                	'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value"/>'
 		);
-	}else if(item.tipo == 'input_inteiro') {
+	}else if(item.modelo == 'input_inteiro') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value input-number inteiro"/>'
 		);
-	}else if(item.tipo == 'input_decimal') {
+	}else if(item.modelo == 'input_decimal') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value input-number decimal"/>'
 		);
-	}else if(item.tipo == 'input_data') {
+	}else if(item.modelo == 'input_data') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="__/__/____" class="input-value input-number data"/>'
 		);
-	}else if(item.tipo == 'input_cpf') {
+	}else if(item.modelo == 'input_cpf') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" placeholder="___.___.___-__" class="input-value input-number cpf"/>'
 		);
-	}else if(item.tipo == 'input_cnpj') {
+	}else if(item.modelo == 'input_cnpj') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="___.___.___.___/__" class="input-value input-number cnpj"/>'
 		);
-	}else if(item.tipo == 'input_celular') {
+	}else if(item.modelo == 'input_celular') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="(___)_____.____" class="input-value input-number celular"/>'
 		);
-	}else if(item.tipo == 'input_telefone') {
+	}else if(item.modelo == 'input_telefone') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="(___)____.____" class="input-value input-number telefone"/>'
 		);
-	}else if(item.tipo == 'input_placa') {
+	}else if(item.modelo == 'input_placa') {
 		$("#td-textinput-" + labelId).append(
 					'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="___-____" class="input-value input-number placa"/>'
 		);
-	}else if(item.tipo == 'input_checkbox') {
+	}else if(item.modelo == 'input_checkbox') {
+		var textChecked ="";
+		if (item.valor != "") {
+			textChecked = 'checked="checked"';
+		};
 		$("#td-textinput-" + labelId).append(
-					'<input type="checkbox" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value"/>'
+					'<input type="checkbox" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value" ' + textChecked + '/>'
 		);
-	}else if(item.tipo == 'input_radio') {
+		$("#" + labelId).click(function() {
+			$("#" + labelId).val("");
+			if($(this).is(':checked')) {
+				$("#" + labelId).val("checked");
+			};
+			obj = JSON.parse(localStorage.getItem("dadosSaved"));
+			obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val();
+	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
+		});
+	}else if(item.modelo == 'input_radio') {
+		var itemChecked ="";
 		$("#td-textinput-" + labelId).append(
-					'<fieldset id="' + labelId + '" data-role="controlgroup" data-mini="true" data-type="horizontal" class="controlgroup">'
+				'<fieldset id="' + labelId + '" data-role="controlgroup" data-mini="true" class="controlgroup">'
 			);
 		$.each(item.opcoes, function(w, item_radio){
 			var labelRadioId = item_radio.label.replace( /\s/g, '' ) + z;
 			var textChecked ="";
-			if (item_radio.label == item.valor) {
-				textChecked = 'checked="checked"';
-			};
 			$("#" + labelId).append(
-						'<input type="radio" class="ui-radio" name="' + labelId + '" id="' + labelRadioId + '"  value="' + item_radio.label + '" ' + textChecked + ' class="input-value" />' + 
+						'<input type="radio" name="' + labelId + '" id="' + labelRadioId + '"  value="' + item_radio.label + '" class="input-value" ' + textChecked +  '/>' + 
 						'<label for="' + labelRadioId + '">' + item_radio.label + '</label>' 
 			);
+			$("#" + labelRadioId).checkboxradio().checkboxradio("refresh");
+			if (item_radio.label == item.valor) {
+				itemChecked = labelRadioId;
+				$("#" + labelRadioId).attr("checked",true);
+			};
 			$("#" + labelRadioId).click(function() {
-				var text = localStorage.getItem("dadosSaved");
-				obj = JSON.parse(text);
-				obj.panel[i].fields[z].valor =  $("#" + labelRadioId).val();
+				obj = JSON.parse(localStorage.getItem("dadosSaved"));
+				obj.documento.panel[i].fields[z].valor =  $("#" + labelRadioId).val();
 		        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
-				var text1 = localStorage.getItem("dadosSaved");
-				obj1 = JSON.parse(text1);
 			});
 		});
 		$("#td-textinput-" + labelId).append(
 					'</fieldset>'
 		);
-	}else if(item.tipo == 'input_select') {
+		$("#" + itemChecked).attr("checked", true).checkboxradio("refresh");
+	}else if(item.modelo == 'input_select') {
 		$("#td-textinput-" + labelId).append(
 						'<div id="' + labelId + '" data-role="fieldcontain" class="fieldcontain" >' +
 							'<select name="' + labelId + '" id="select-' + labelId + '" data-mini="true">'
@@ -174,30 +205,28 @@ function montaCampos(i, panelId, z, item) {
 			if($("#select-" + labelId).val() == "Selecionar"){
 				$("#select-" + labelId).val("");
 			};
-			var text = localStorage.getItem("dadosSaved");
-			obj = JSON.parse(text);
-			obj.panel[i].fields[z].valor =  $("#select-" + labelId).val();
+			obj = JSON.parse(localStorage.getItem("dadosSaved"));
+			obj.documento.panel[i].fields[z].valor =  $("#select-" + labelId).val();
 	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
-			var text1 = localStorage.getItem("dadosSaved");
-			obj1 = JSON.parse(text1);
 		});
+
 //		$("#table-" + panelId).append(
 //						'	</select>' +
 //						'</div>'
 //		);
+		
 	};
 	// salva conteudo
 	$("#" + labelId).blur(function() {
-		var text = localStorage.getItem("dadosSaved");
-		obj = JSON.parse(text);
-		if (obj.vistoria.panel[i].fields[z].tipo != "input_texto") {
-			obj.vistoria.panel[i].fields[z].valor =  $("#" + labelId).val().replace(/[^a-z0-9]+/gi,'');
+		obj = JSON.parse(localStorage.getItem("dadosSaved"));
+		console.log ("antes:" + obj.documento.panel[i].fields[z].valor);
+		if (obj.documento.panel[i].fields[z].tipo != "input_texto") {
+			obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val().replace(/^\s+|\s+$/g,"");
 		}else{
-			obj.vistoria.panel[i].fields[z].valor =  $("#" + labelId).val();
+			obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val();
 		};
+		console.log ("depois:" + obj.documento.panel[i].fields[z].valor);
         localStorage.setItem("dadosSaved", JSON.stringify(obj));    
-		var text1 = localStorage.getItem("dadosSaved");
-		obj1 = JSON.parse(text1);
 	});
 
 	finalCampo(panelId, label, labelId);
@@ -218,11 +247,12 @@ function finalCampo(panelId, label, labelId) {
 	);
 };
 
-function inicializaWindow() {	
+function inicializaWindow() {
+	// formata campos texto
 	$('input[type="text"]').textinput().trigger('create');
-	$('[type=checkbox]').checkboxradio().trigger('create');
-	$('.controlgroup').controlgroup().trigger('create');
+	// formata campos select
 	$('.fieldcontain').fieldcontain().trigger('create');
+	// formata mascaras
 	$('.mesano').mask('00/0000');
 	$('.data').mask('00/00/0000');
 	$('.cpf').mask('000.000.000-00');
@@ -231,7 +261,6 @@ function inicializaWindow() {
 	$('.telefone').mask('(000)0000.0000');
 	$('.inteiro').mask('000.000.000.000');
 	$('.decimal').mask('000.000.000.000,00');
-	$('.placa').mask('XXX-0000');
 	$('.placa').mask('XXX-0000', {translation:  {'X': {pattern: /[A-Z]/}}});
 };
 
@@ -277,4 +306,16 @@ function iniciaSnapper() {
     $('.snap-drawer').on('click', '.fecha-snapper', function () {
         snapper.close();
     });
+};
+
+function mobileDetect() {
+	// device detection
+	if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i
+			.test(navigator.userAgent)
+			|| /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i
+					.test(navigator.userAgent.substr(0, 4))) {
+		return true;
+	} else {
+		return false;
+	};
 };

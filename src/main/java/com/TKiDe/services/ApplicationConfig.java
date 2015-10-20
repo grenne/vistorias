@@ -26,6 +26,6 @@ import java.util.Set;
 public class ApplicationConfig extends Application {
 
     public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList( Vistoria.class, Vistorias.class, UpdateDocument.class));
+        return new HashSet<Class<?>>(Arrays.asList( Documentos.class));
     }
 }
