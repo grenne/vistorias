@@ -13,7 +13,7 @@ $(document).ready(function() {
 	console.log ("url" + url + " id:" + id);
 	$(function(){
 		$.ajax({
-            url: "http://localhost:8080/vistorias/rest/documento/obter?id=" + id,
+            url: "http://52.27.128.28:8080/vistorias/rest/documento/obter?id=" + id,
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(data) {
@@ -50,7 +50,7 @@ $(document).ready(function() {
 		console.log (dataSaved);
 		$.ajax({
 			type: "POST",
-            url: "http://localhost:8080/vistorias/rest/documento/atualizar",
+            url: "http://52.27.128.28:8080/vistorias/rest/documento/atualizar",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             data : JSON.stringify(objJson),
@@ -183,7 +183,6 @@ function montaCampos(i, panelId, z, item) {
 		$("#td-textinput-" + labelId).append(
 					'</fieldset>'
 		);
-		$("#" + itemChecked).attr("checked", true).checkboxradio("refresh");
 	}else if(item.modelo == 'input_select') {
 		$("#td-textinput-" + labelId).append(
 						'<div id="' + labelId + '" data-role="fieldcontain" class="fieldcontain" >' +
