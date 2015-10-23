@@ -3,7 +3,7 @@
 $(document).ready(function() {
 	$(function() {
 		$.ajax({
-			url : "http://52.27.128.28:8080/vistorias/rest/documento/lista",
+			url : "http://localhost:8080/vistorias/rest/documento/lista",
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {
