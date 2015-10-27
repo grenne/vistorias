@@ -3,7 +3,7 @@
 $(document).ready(function() {
 	$(function() {
 		$.ajax({
-			url : "http://localhost:8080/vistorias/rest/documento/lista",
+			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario,
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {

@@ -6,14 +6,14 @@ $(document).ready(function() {
 	console.log ("$(window).width():" + $(window).width());
 	console.log ("$(document).width():" + $(document).width());
 	var tipoDevice = mobileDetect();
-	console.log('You are using a mobile device!:' + tipoDevice);
+	alert('You are using a mobile device!:' + tipoDevice);
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
 	console.log ("url" + url + " id:" + id);
 	$(function(){
 		$.ajax({
-            url: "http://localhost:8080/vistorias/rest/documento/obter?id=" + id,
+            url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/obter?id=" + id,
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function(data) {
@@ -48,9 +48,10 @@ $(document).ready(function() {
 		var objJson = JSON.parse(dataSaved);
 		objJson.documento.id = id;
 		console.log (dataSaved);
+		console.log (JSON.stringify(objJson));
 		$.ajax({
 			type: "POST",
-            url: "http://localhost:8080/vistorias/rest/documento/atualizar",
+            url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/atualizar",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             data : JSON.stringify(objJson),
@@ -70,9 +71,11 @@ function inicioPanel(panelId, panelLabel, i, panel) {
 	'<!-- ' + panel.label + ' -->' +			
 	'<div id="panel-' + panelId + '" ' + montaScroll + '">' +
 		'<h3 class="ui-bar ui-bar-d ui-corner-all">' + panel.label + '</h3>' +
-		'<div id="container-' + panelId + '" class=" ui-body ui-body-a ui-corner-all vistoria-detalhes">' +
+		'<div id="container-' + panelId + '" class=" ui-body ui-body-a ui-corner-all vistoria-detalhes"' +
+		'>' +
 			'<table id="table-' + panelId + '">'
 	);
+	
 };
 
 function montaCabecalho(documento) {

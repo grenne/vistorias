@@ -31,18 +31,21 @@ public class Document {
 	public static final class Documento {
 
 		public String id;
-		public String usuario;
+		public String tipo;
+		public Usuarios usuarios[];
 		public Header header[];
 		public Panel panel[];
+
 
 		public Documento() {
 
 		}
 
 		@JsonCreator
-		public Documento(String id, String usuario, Header[] header, Panel[] panel) {
+		public Documento(String id, String tipo,  Usuarios[] usuarios, Header[] header, Panel[] panel) {
 			this.id = id;
-			this.usuario = usuario;
+			this.tipo = tipo;
+			this.usuarios = usuarios;
 			this.header = header;
 			this.panel = panel;
 		}
@@ -53,14 +56,6 @@ public class Document {
 
 		public String getId() {
 			return this.id;
-		}
-
-		public void setUsuario(String usuario) {
-			this.usuario = usuario;
-		}
-
-		public String getUsuario() {
-			return this.usuario;
 		}
 
 		public void setHeader(Header[] header) {
@@ -81,8 +76,31 @@ public class Document {
 
 		@Override
 		public String toString() {
-			return new StringBuffer(" Id : ").append(this.id).append(" Usuario : ").append(this.usuario)
+			return new StringBuffer(" Id : ").append(this.id).append(" Usuario : ").append(this.usuarios)
 					.append(" Header : ").append(this.header).append(" Panel : ").append(this.panel).toString();
+		}
+
+
+
+		public static final class Usuarios {
+			public String codigo;
+
+			public Usuarios() {
+
+			}
+
+			@JsonCreator
+			public Usuarios(String codigo) {
+				this.codigo = codigo;
+			}
+
+			public void setCodigo(String codigo) {
+				this.codigo = codigo;
+			}
+
+			public String getCodigo() {
+				return this.codigo;
+			}
 		}
 
 		public static final class Header {

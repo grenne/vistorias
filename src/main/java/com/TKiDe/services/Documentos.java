@@ -39,16 +39,38 @@ import com.mongodb.MongoException;
 @Path("/documento")
 public class Documentos {
 
+	@Path("/login")	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONObject login(@QueryParam("usuario") String usuario, @QueryParam("senha") String senha) throws UnknownHostException, MongoException {
+		Mongo mongo = new Mongo();
+		DB db = (DB) mongo.getDB("documento");
+		DBCollection collection = db.getCollection("usuarios");
+		BasicDBObject setUsu = new BasicDBObject();
+		setUsu.put("usu.usuario",usuario);
+		setUsu.put("usu.senha",senha);
+		DBObject cursor = collection.findOne(setUsu);
+		JSONObject documento = new JSONObject();
+		BasicDBObject obj = (BasicDBObject) cursor.get("usu");
+		documento.put("usu", obj);
+		mongo.close();
+		return documento;
+	};
+
 	@Path("/lista")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray ObterLista() throws UnknownHostException, MongoException, ParseException {
+	public JSONArray ObterLista(@QueryParam("usuario") String usuario) throws UnknownHostException, MongoException, ParseException {
 
+		System.out.println(" usuario "  + usuario );
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("documento");
+
+		BasicDBObject setQuery = new BasicDBObject();
+		setQuery.put("documento.tipo", "dados");
+		setQuery.append("documento.usuarios.codigo", usuario);
 		DBCollection collection = db.getCollection("documentos");
-		BasicDBObject searchQuery = new BasicDBObject("documento.usuario", "Carlos");
-		DBCursor cursor = collection.find(searchQuery);
+		DBCursor cursor = collection.find(setQuery);
 		JSONArray documentos = new JSONArray();
 		
 		while (((Iterator<DBObject>) cursor).hasNext()) {
@@ -71,8 +93,7 @@ public class Documentos {
 	@Path("/obter")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject ObterDocumento(@QueryParam("id") String id, @QueryParam("nova") String nova) throws UnknownHostException, MongoException {
-		System.out.println("aqui:" + id + " nova:" + nova);
+	public JSONObject ObterDocumento(@QueryParam("id") String id) throws UnknownHostException, MongoException {
 		ObjectId _id = new ObjectId(id);
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("documento");
@@ -102,6 +123,7 @@ public class Documentos {
 		ObjectMapper mapper = new ObjectMapper();
 		mapJson = mapper.readValue(jsonDocumento, HashMap.class);
 		JSONObject documento = new JSONObject();
+		System.out.println(mapJson);
 		documento.putAll(mapJson);
 		BasicDBObject update = new BasicDBObject("$set", new BasicDBObject(documento));
 		BasicDBObject searchQuery = new BasicDBObject("_id",_id);
@@ -115,5 +137,6 @@ public class Documentos {
 		mongo.close();
 		return Response.status(200).entity(doc).build();
 	};
+
 	
 };

@@ -6,6 +6,9 @@ $(document).ready(function() {
 	urlInput$.val(localStorage.urlServidor);
 	cpfInput$.val(localStorage.cpfUsuario);
 	senhaInput$.val(localStorage.senha);
+	
+	console.log ("IP:" + localStorage.urlServidor);
+	console.log ("CPF:" + localStorage.cpfUsuario);
 
 	$('#cpfTextInput').mask('000.000.000-00', {
 		reverse : true
@@ -59,34 +62,38 @@ function executaLogin(urlServidor, cpfUsuario, senha) {
 	var urlFinal = urlServidor + metodoLogin + "?cpf=" + cpfUsuario + "&senha="
 			+ senha;
 
-	var resultado;
-
+	var resultado = "";
 	$('.msg-sucesso, .msg-erro').remove();
-
-	$
-			.ajax(urlFinal)
-			.done(
-					function(usu) {
+	
+	$(function(){
+		$.ajax({
+			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/login?usuario=" + cpfUsuario + "&senha=" + senha,
+			contentType : "application/json; charset=utf-8",
+			dataType : 'json',
+			success : function(data) {
 						console.info("Login executado com sucesso!");
 						localStorage.urlServidor = urlServidor;
 						localStorage.cpfUsuario = cpfUsuario;
 						localStorage.senha = senha;
 
-						localStorage.idFun = usu.idFuncionario;
-						localStorage.idPes = usu.idPessoa;
-						localStorage.eGestor = usu.gestor;
-
+						localStorage.nomeUsuario = data.usu.nome;
+						localStorage.usuAdm = data.usu.administrador;
+						localStorage.usuDistribuidor = data.usu.distribuidor;
+						resultado = "true";
 						$('#configForm')
 								.append(
 										"<span class='msg-sucesso'>Configurações salvas com sucesso</span>");
-					})
+			}
+		})
 			.error(
 					function() {
 						console.info("Não foi possível executar login.");
 						$('#configForm')
 								.append(
 										"<span class='msg-erro'>Não foi possível realizar o login com as informações digitadas</span>");
+						resultado = "false";
 					});
-
+	});
+	
 	return resultado;
 }

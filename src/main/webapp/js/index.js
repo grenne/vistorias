@@ -19,6 +19,8 @@
 var app = {
 	// Application Constructor
 	initialize : function() {
+		console.log('inicializou: ');
+
 		this.bindEvents();
 	},
 	// Bind Event Listeners
@@ -49,12 +51,14 @@ var app = {
 };
 
 function redirecionar() {
-	if (typeof localStorage.idFun == 'undefined') {
+	if (typeof localStorage.usu == 'undefined') {
 		console
 				.info("Não foi encontrado id do funcionário logado no storage. Redirecionando para página de configuração.");
-		document.location.replace("vistorias.html");
+		console.log('não encontrou: ');
+		document.location.replace("config.html");
 	} else {
-		document.location.replace("funcionario-detalhes.html?fun="
-				+ localStorage.idFun);
+		console.log('encontrou: ');
+		document.location.replace("vistorias.html?usu="
+				+ localStorage.usu);
 	}
 }
