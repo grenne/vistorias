@@ -8,8 +8,10 @@ $(document).ready(function() {
 			dataType : 'json',
 			success : function(data) {
 				var dados = JSON.stringify(data);
+				console.log ("dados:" + dados);
 				$.each(data, function(i, documento) {
 					var obj = JSON.stringify(documento);
+					console.log ("item:" + obj);
 					dados = JSON.parse(obj);
 					var id = documento._id;
 					$.each(documento.header, function(m, header) {

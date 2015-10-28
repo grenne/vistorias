@@ -68,12 +68,14 @@ public class Documentos {
 
 		BasicDBObject setQuery = new BasicDBObject();
 		setQuery.put("documento.tipo", "dados");
-		setQuery.append("documento.usuarios.codigo", usuario);
+		setQuery.append("documento.situacao", "pendente");
+		setQuery.append("documento.usuarioAtual", usuario);
 		DBCollection collection = db.getCollection("documentos");
 		DBCursor cursor = collection.find(setQuery);
 		JSONArray documentos = new JSONArray();
 		
 		while (((Iterator<DBObject>) cursor).hasNext()) {
+			System.out.println("tem lista");
 			JSONObject jsonObject; 
 			JSONParser parser = new JSONParser(); 
 			BasicDBObject obj = (BasicDBObject) ((Iterator<DBObject>) cursor).next();
@@ -90,6 +92,37 @@ public class Documentos {
 		return documentos;
 	};
 	
+	@Path("/modelos")	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray ObterModelos() throws UnknownHostException, MongoException, ParseException {
+
+		Mongo mongo = new Mongo();
+		DB db = (DB) mongo.getDB("documento");
+
+		BasicDBObject setQuery = new BasicDBObject();
+		setQuery.put("documento.tipo", "modelo");
+		setQuery.append("documento.situacao", "valido");
+		DBCollection collection = db.getCollection("documentos");
+		DBCursor cursor = collection.find(setQuery);
+		JSONArray documentos = new JSONArray();
+		
+		while (((Iterator<DBObject>) cursor).hasNext()) {
+			JSONObject jsonObject; 
+			JSONParser parser = new JSONParser(); 
+			BasicDBObject obj = (BasicDBObject) ((Iterator<DBObject>) cursor).next();
+			String documento = obj.getString("documento");
+			jsonObject = (JSONObject) parser.parse(documento);
+			JSONObject jsonDocumento = new JSONObject();
+			jsonDocumento.put("_id", obj.getString("_id"));
+			jsonDocumento.put("modelo", jsonObject.get("modelo"));
+			documentos.add(jsonDocumento);
+			System.out.println("modelos:" + documentos);
+		};
+		mongo.close();
+		return documentos;
+	};
+
 	@Path("/obter")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -107,8 +140,6 @@ public class Documentos {
 		return documento;
 	};
 	
-
-
 	@Path("/atualizar")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -138,5 +169,26 @@ public class Documentos {
 		return Response.status(200).entity(doc).build();
 	};
 
+	
+	@Path("/incluir")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response IncluirDocumento(Document doc) throws MongoException, JsonParseException, JsonMappingException, IOException {
+		Mongo mongo = new Mongo();
+		DB db = (DB) mongo.getDB("documento");
+		DBCollection collection = db.getCollection("documentos");
+		Gson gson = new Gson();
+		String jsonDocumento = gson.toJson(doc);
+		Map<String,String> mapJson = new HashMap<String,String>();
+		ObjectMapper mapper = new ObjectMapper();
+		mapJson = mapper.readValue(jsonDocumento, HashMap.class);
+		JSONObject documento = new JSONObject();
+		System.out.println(mapJson);
+		documento.putAll(mapJson);
+		DBObject insert = new BasicDBObject(documento);
+		collection.insert(insert);
+		mongo.close();
+		return Response.status(200).entity(doc).build();
+	};
 	
 };

@@ -1,12 +1,6 @@
 /* Documento Detalhes */
 $(document).ready(function() {   
-	// acertar o tamanha da tela
-	console.log ("$(window).height:()" + $(window).height());
-	console.log ("$(document).height():" + $(document).height()); 
-	console.log ("$(window).width():" + $(window).width());
-	console.log ("$(document).width():" + $(document).width());
 	var tipoDevice = mobileDetect();
-	alert('You are using a mobile device!:' + tipoDevice);
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
@@ -18,12 +12,11 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
 	            localStorage.setItem("dadosSaved", JSON.stringify(data));
-	        	$.each(data.documento.header, function(i, header) {
-	        		montaLinhaCabecalho(header);
-	        	});
-				// obter o tamanho do cabecalho
-				console.log ("$(cabecalho-detalhes):" + $("#cabecalho-detalhes").height());
-				var heightCabecalho = $("#cabecalho-detalhes").height();
+        		montaCabecalho(data.documento.header);
+        		// formata campos texto
+        		$('input[type="text"]').textinput().trigger('create');
+        		// formata campos select
+        		$('.fieldcontain').fieldcontain().trigger('create');
 				var panelLabelList = [];
 				$.each(data.documento.panel, function(i, panel){
 					var panelId = panel.label.replace(" ", "") + i;
@@ -31,7 +24,7 @@ $(document).ready(function() {
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel);
 					$.each(panel.fields, function(z, item){
-						montaCampos(i, panelId, z, item);
+						montaCampos(i, panelId, z, item, "detalhes");
 					});
 					finalPanel(panelId, panelLabel, i, panel);
 				});
@@ -46,12 +39,16 @@ $(document).ready(function() {
 	$( ".submitButton" ).bind( "click", function(event, ui) {
 		var dataSaved = localStorage.getItem("dadosSaved");
 		var objJson = JSON.parse(dataSaved);
-		objJson.documento.id = id;
+		objJson.documento.usuarioAtual = localStorage.cpfUsuario;
+		objJson.documento.tipo = "dados";
+		objJson.documento.situacao = "pendente";
+		objJson.documento.usuarios[0].codigo = localStorage.cpfUsuario;
 		console.log (dataSaved);
 		console.log (JSON.stringify(objJson));
+		
 		$.ajax({
 			type: "POST",
-            url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/atualizar",
+            url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/incluir",
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             data : JSON.stringify(objJson),
@@ -59,7 +56,7 @@ $(document).ready(function() {
             	console.log ("terminou atualização id:" + id + " data:" + data);
             }
 		});
-		$(window.document.location).attr('href','vistorias-lista.html');
+		$(window.document.location).attr('href','vistorias.html');
 	});	
 });
 
@@ -78,13 +75,22 @@ function inicioPanel(panelId, panelLabel, i, panel) {
 	
 };
 
-function montaLinhaCabecalho(header) {
-	var linha = '' +  
-				'<div class="cabecalho-dados">' +
-				'<span class="detalhes-label">' + header.label + ': </span>' +
-				'<span class="fun-turno">' + header.valor + '</span>' +
-				'</div>';	
-	$("#cabecalho").append(linha);
+function montaCabecalho(header) {
+	$.each(header, 
+			function(i, header) {
+		console.log("entrou no each");
+		var labelId = header.label.replace( /\s/g, '' ) + 1 + "-" + i;
+		$("#table-cabecalho").append(
+				'<tr>' +
+					'<td for="textinput-' + labelId + '" class="ui-input-text">' + header.label + '</td>' +
+					'<td id="td-textinput-' + labelId + '">'
+		);
+		montaCampos(i, labelId, 1, header, "cabecalho")
+		$("#table-cabecalho").append(
+				'</td>' +
+			'</tr>'					
+		);
+	});
 };
 
 function finalPanel(panelId, panelLabel, i, panel) {
@@ -96,7 +102,7 @@ function finalPanel(panelId, panelLabel, i, panel) {
 	);
 };
 
-function montaCampos(i, panelId, z, item) {
+function montaCampos(i, panelId, z, item, origem) {
 	var labelId = item.label.replace( /\s/g, '' ) + z + "-" + i;
 	var label = item.label;
 	var labelRadioId = "";
@@ -215,17 +221,31 @@ function montaCampos(i, panelId, z, item) {
 		
 	};
 	// salva conteudo
-	$("#" + labelId).blur(function() {
-		obj = JSON.parse(localStorage.getItem("dadosSaved"));
-		console.log ("antes:" + obj.documento.panel[i].fields[z].valor);
-		if (obj.documento.panel[i].fields[z].tipo != "input_texto") {
-			obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val().replace(/^\s+|\s+$/g,"");
-		}else{
-			obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val();
-		};
-		console.log ("depois:" + obj.documento.panel[i].fields[z].valor);
-        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
-	});
+	if (origem == "detalhes"){
+		$("#" + labelId).blur(function() {
+			obj = JSON.parse(localStorage.getItem("dadosSaved"));
+			console.log ("Cantes:" + obj.documento.panel[i].fields[z].valor);
+			if (obj.documento.panel[i].fields[z].tipo != "input_texto") {
+				obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val().replace(/^\s+|\s+$/g,"");
+			}else{
+				obj.documento.panel[i].fields[z].valor =  $("#" + labelId).val();
+			};
+			console.log ("depois:" + obj.documento.panel[i].fields[z].valor);
+	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
+		});
+	}else{
+		$("#" + labelId).blur(function() {
+			obj = JSON.parse(localStorage.getItem("dadosSaved"));
+			console.log ("CAB antes:" + obj.documento.header[i].valor);
+			if (obj.documento.header[i].tipo != "input_texto") {
+				obj.documento.header[i].valor =  $("#" + labelId).val().replace(/^\s+|\s+$/g,"");
+			}else{
+				obj.documento.header[i].valor =  $("#" + labelId).val();
+			};
+			console.log ("CAB depois:" + obj.documento.header[i].valor);
+	        localStorage.setItem("dadosSaved", JSON.stringify(obj));    
+		});
+	};
 
 	finalCampo(panelId, label, labelId);
 };
