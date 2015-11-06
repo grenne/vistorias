@@ -59,6 +59,6 @@ function redirecionar() {
 	} else {
 		console.log('encontrou: ');
 		document.location.replace("vistorias.html?usu="
-				+ localStorage.usu);
+				+ localStorage.cpfUsuario);
 	}
 }

@@ -1,7 +1,8 @@
 /* Funcion��rio Detalhes */
-$(document).ready(function() {    
+$(document).ready(function() { 
+    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
     iniciaSnapper();
-    iniciaAcoes();        
+    iniciaAcoes();     
 });
 
 /* Utilizada biblioteca Swipe.js: http://swipejs.com/ */

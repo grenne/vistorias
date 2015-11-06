@@ -1,6 +1,7 @@
 /* Funcionário Lista */
 
 $(document).ready(function() {
+    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
 	$(function() {
 		$.ajax({
 			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario,

@@ -1,5 +1,6 @@
 /* Documento Detalhes */
 $(document).ready(function() {   
+    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
 	var tipoDevice = mobileDetect();
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
@@ -56,7 +57,7 @@ $(document).ready(function() {
             	console.log ("terminou atualização id:" + id + " data:" + data);
             }
 		});
-		$(window.document.location).attr('href','vistorias.html');
+		$(window.document.location).attr('href','modelo-lista.html?vistoria-nova.html');
 	});	
 });
 
