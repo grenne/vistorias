@@ -12,7 +12,8 @@
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
-<link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css">
+<link rel="stylesheet" href="css/jquery.mobile.theme.customized.min.css">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/modelo-administracao.css" />
 
@@ -24,12 +25,13 @@
 <link href="css/listview-grid.css" rel="stylesheet">
 
 <script src="js/jquery.js"></script>
-<script src="js/jquery.mobile-1.4.2.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
 <script src="js/jquery.mask.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/snap.js"></script>
 <script src="js/swipe.js"></script>
 <script src="js/modelo-administracao.js"></script>
+<script src="js/detalhes.js"></script>
 <script src="js/config.js"></script>
 <script src="js/less-1.6.1.min.js" type="text/javascript"></script>
 <title>Vistoria</title>
@@ -58,6 +60,7 @@
 									<option value="input_checkbox">Checkbox</option>
 									<option value="input_select">Seleção</option>
 									<option value="input_radio">Radio</option>
+									<option value="input_radio_inline">Radio mesma linha</option>
 								</select>
 							</div>
 						</td>
@@ -74,7 +77,7 @@
  	   </div>
 	   <div data-role="popup" id="popupIncluiPainel" class="ui-content" data-theme="d" style="max-width:600px;">
 			<div id="popupII" class="tabela-detalhes">
-			  <h1>Novo Painel</h1>
+			  <h1>Painel</h1>
 			   <table id="table-painel" >
 					<tr id="tr-nomePainel">
 						<td for="nomePainel"  class="ui-input-text">Nome painel</td>
@@ -90,7 +93,7 @@
 		<div id="conteudo-geral" class="ui-content" data-theme="d">
 			<div data-role="header" data-position="fixed">
 				<h1 class="titulo-pagina">Modelo</h1>
-				<a href="modelo-lista.html" rel="external" data-icon="arrow-l"
+				<a href="modelo-lista.html?modelo-administracao.html" rel="external" data-icon="arrow-l"
 					data-iconpos="notext" id="btn-mostra-volta">Volta</a>
 			</div>
 			<!-- /header -->

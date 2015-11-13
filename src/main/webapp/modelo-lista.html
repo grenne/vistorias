@@ -24,12 +24,13 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" href="css/jquery.mobile.theme.customized.min.css">
 		<link rel="stylesheet" type="text/css" href="css/modelo-lista.css" />                    
-	    <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css">
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" href="css/Bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 	    <script src="js/jquery.js"></script>
-        <script src="js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script src="js/jquery.mask.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/modelo-lista.js"></script>
@@ -38,18 +39,37 @@
     </head>
     <body>
         
-        <div data-role="popup" id="popupInfoPonto" class="ui-content" data-theme="d" style="max-width:350px;">
-          <p>Esse funcionário possui tratamentos ou críticas de ponto pendentes</p>
-        </div>
-        <div data-role="popup" id="popupInfoTarefas" class="ui-content" data-theme="d" style="max-width:350px;">
-          <p>Esse funcionário possui tarefas de Workflow pendentes</p>
-        </div>
-        
+	   <div data-role="popup" id="popupIncluiModelo" class="ui-content" data-theme="d" style="max-width:600px;">
+			<div id="popupII" class="tabela-detalhes">
+			  <h1>Modelo</h1>
+			   <table id="table-modelo" >
+					<tr id="tr-nomeModelo">
+						<td for="nomeModelo"  class="ui-input-text">Nome modelo</td>
+						<td id="td-nomeModelo">
+                			<input type="text" name="nomeModelo" id="nomeModelo" value="" class="input-value" required data-inline="true"/>
+						</td>
+					</tr>	
+					<tr>
+						<td for="td-selecao" class="ui-input-text">Situação</td>
+						<td id="td-selecao">
+							<div class="ui-field-contain">
+								<select name="select-situacao" id="select-situacao" data-mini="true" required class="selectOptions">
+									<option value="">Selecionar</option>
+									<option value="valido">Valido</option>
+									<option value="inativo">Inativo</option>
+								</select>
+							</div>
+						</td>
+					</tr>					
+			   </table>
+				<a href="#" id="confirmaNovoModelo" data-role="button" data-inline="true" data-theme="a">Confirmar</a>
+			</div>
+ 	   </div>
         <div
             data-role="header"
             data-position="fixed"
             data-theme="d">
-            <h1>Seguradora</h1>
+            <h1>Modelos</h1>
             <a
                 href="vistorias.html"
                 rel="external"
@@ -64,6 +84,9 @@
                 data-iconpos="notext"
                id="btn-mostra-menu">Menu</a>        
         </div><!-- /header -->        
+		<div data-id="buttonIncluir">
+			<a id="incluirButton" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" >Novo Modelo</a>
+		</div>
         <div
             role="main"
             class="ui-content jqm-content jqm-fullwidth">        
@@ -71,6 +94,8 @@
                 <input id="filtraTabela-input" data-type="search">
             </form>    
             <div id="listaModelos"  class="ui-responsive" >
+				<table id="table-modelos">
+				</table>
            </div>
         </div><!--main -->      
     </body>
