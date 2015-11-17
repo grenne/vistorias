@@ -1,7 +1,8 @@
 /* Documento Detalhes */
-$(document).ready(function() {   
+$(function() {
     executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
-	// acertar o tamanha da tela
+
+    // acertar o tamanha da tela
 	console.log ("$(window).height:()" + $(window).height());
 	console.log ("$(document).height():" + $(document).height()); 
 	console.log ("$(window).width():" + $(window).width());
@@ -10,8 +11,17 @@ $(document).ready(function() {
 	alert('You are using a mobile device!:' + tipoDevice);
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
-	var id = parametrosDaUrl.split("=")[1];
-	console.log ("url" + url + " id:" + id);
+	var id = parametrosDaUrl.split("&")[0];
+	var tipoPagina = parametrosDaUrl.split("&")[1];
+	var urlBack = parametrosDaUrl.split("&")[2].split("$")[0] + '?' + parametrosDaUrl.split("$")[1]; 
+	var inputDisabled = ""; 
+	if (tipoPagina =="consulta"){
+		inputDisabled = "disabled";;
+	};
+
+	// setar barra superior para voltar para pagina correta 
+	montaBarHeader(urlBack);	
+	
 	$(function(){
 		$.ajax({
             url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/obter?id=" + id,
@@ -19,7 +29,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
 	            localStorage.setItem("dadosSaved", JSON.stringify(data));
-        		montaCabecalho(data.documento.header, id, "false");
+        		montaCabecalho(data.documento.header, id, "false", "disabled");
 				var heightCabecalho = $("#cabecalho-detalhes").height();
 				var panelLabelList = [];
 				$.each(data.documento.panel, function(i, panel){
@@ -28,7 +38,7 @@ $(document).ready(function() {
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel);
 					$.each(panel.fields, function(z, item){
-						montaCampos(i, panelId, z, item);
+						montaCampos(i, panelId, z, item, "detalhes", id, manutencao, inputDisabled);
 					});
 					finalPanel(panelId, panelLabel, i, panel);
 				});

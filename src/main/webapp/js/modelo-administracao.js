@@ -5,7 +5,11 @@ $(document).ready(function() {
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
-	console.log ("url" + url + " id:" + id);
+	var urlBack = parametrosDaUrl.split("&")[2].split("$")[0] + '?' + parametrosDaUrl.split("$")[1]; 
+
+	// setar barra superior para voltar para pagina correta 
+	montaBarHeader(urlBack);	
+
 	$(function(){
 		$.ajax({
             url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/obter?id=" + id,

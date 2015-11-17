@@ -38,14 +38,7 @@
         <title>Lista de vistorias</title>
     </head>
     <body>
-        
-        <div data-role="popup" id="popupInfoPonto" class="ui-content" data-theme="d" style="max-width:350px;">
-          <p>Esse funcionário possui tratamentos ou críticas de ponto pendentes</p>
-        </div>
-        <div data-role="popup" id="popupInfoTarefas" class="ui-content" data-theme="d" style="max-width:350px;">
-          <p>Esse funcionário possui tarefas de Workflow pendentes</p>
-        </div>
-        
+
         <div
             data-role="header"
             data-position="fixed"
@@ -65,26 +58,12 @@
                 data-iconpos="notext"
                id="btn-mostra-menu">Menu</a>        
         </div><!-- /header -->        
+
         <div
             role="main"
-            class="ui-content jqm-content jqm-fullwidth">        
-            <form>
-                <input id="filtraTabela-input" data-type="search">
-            </form>    
-            <div id="listaVistorias" data-input="#filtraTabela-input" class="ui-responsive" >
-<!--                <tr> -->
-<!--                  <td><img src="recursos/pes-fotos/foto-01.jpg" class="pesfoto"></td>            -->
-<!--                  <td>1001</td> -->
-<!--                  <td>Amanda da Silva</td> -->
-<!--                    <td>Analista de Sistemas</td> -->
-<!--                    <td>R$ 1500,00</td> -->
-<!--                    <td>08:00-17:00</td> -->
-<!--                    <td> -->
-<!-- 	                   <a href="#popupInfoPonto" data-rel="popup" data-transition="pop" title="Ponto" class="ui-btn ui-shadow ui-corner-all ui-icon-clock ui-btn-icon-notext icone-acao" >Ponto</a> -->
-<!-- 	                   <a href="#popupInfoTarefas" data-rel="popup" data-transition="pop" title="Tarefas WF" class="ui-btn ui-shadow ui-corner-all ui-icon-edit ui-btn-icon-notext icone-acao">Tarefas</a> -->
-<!--                    </td> -->
-<!--                </tr> -->
-           </div>
+            class="ui-content jqm-content jqm-fullwidth">      
+            <ul id="listaVistorias" data-role="listview" data-filter="true" data-filter-placeholder="Pesquisar..." data-inset="true" data-autodividers="true" class="listview">
+           </ul>
         </div><!--main -->      
     </body>
 </html>

@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
-	console.log ("url" + url + " id:" + id);
+
 	$(function(){
 		$.ajax({
             url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/obter?id=" + id,
@@ -13,7 +13,7 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(data) {
 	            localStorage.setItem("dadosSaved", JSON.stringify(data));
-        		montaCabecalho(data.documento.header);
+        		montaCabecalho(data.documento.header, id, "false", "");
         		// formata campos texto
         		$('input[type="text"]').textinput().trigger('create');
         		// formata campos select
@@ -25,7 +25,7 @@ $(document).ready(function() {
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel);
 					$.each(panel.fields, function(z, item){
-						montaCampos(i, panelId, z, item, "detalhes");
+						montaCampos(i, panelId, z, item, "detalhes", id, "false", "");
 					});
 					finalPanel(panelId, panelLabel, i, panel);
 				});

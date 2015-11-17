@@ -1,10 +1,16 @@
-/* Funcionário Lista */
+/* Documento Lista */
 
 $(document).ready(function() {
     executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
+    var pathPage = location.pathname.split("/")[2];
+	var url   = window.location.search.replace();
+	var parametrosDaUrl = url.split("?")[1];
+	var tipoPagina = parametrosDaUrl.split("&")[0];
+	var situacao = parametrosDaUrl.split("&")[1];
+	console.log ('pathPage --' + pathPage );
 	$(function() {
 		$.ajax({
-			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario,
+			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario + "&situacao=" + situacao,
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {
@@ -15,32 +21,25 @@ $(document).ready(function() {
 					console.log ("item:" + obj);
 					dados = JSON.parse(obj);
 					var id = documento._id;
+					var linha = 
+					    '<li><a href="vistoria-detalhe.html?' + id + '&' + tipoPagina + '&' + pathPage + '$' + parametrosDaUrl + '" rel="external" data-transition="flip">';
+					if (documento.header[0].label != null){
+						linha = linha + 
+						'<h2>' + documento.header[0].valor + '</h2>';
+					};
+					var x = linha;
 					$.each(documento.header, function(m, header) {
-						montaLinha(m, header, id);
+						if (m !=0) {
+							x = x + '<p>' + header.label + ' : ' + header.valor + '</p>';
+						};
 					});
-					var separador = '' + '<hr class="separador" />';
-					$("#listaVistorias").append(separador);
+					linha =   
+					    '</a></li>';
+					x= x + linha;
+					$("#listaVistorias").append(x);
 				});
 				inicializaWindow();
 			}
 		});
 	});
 });
-
-function montaLinha(i, header, id) {
-	var linha = '' + '<div data-id="' 
-			+ id 
-			+ '">'
-			+ '<a  href="vistoria-detalhe.html?id=' 
-			+ id
-			+ '" rel="external" data-transition="flip" class="labelHeader">'
-			+ header.label 
-			+ ':' 
-			+ '</a>'
-			+ '<a  href="vistoria-detalhe.html?id=' 
-			+ id
-			+ '" rel="external" data-transition="flip" class="labelValue">'
-			+ header.valor + '</a>' 
-			+ '</div>';
-	$("#listaVistorias").append(linha);
-};
