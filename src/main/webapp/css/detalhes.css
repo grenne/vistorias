@@ -12,9 +12,6 @@ body {
 	width: 100%;
 }
 
-.ui-input-text, .input_text{
-	max-width : 30em !important;
-}
 
 #div-input-nomeCampo .ui-input-text {
 	max-width : 100% !important;
@@ -27,11 +24,6 @@ body {
 .labelInput {
 	text-align: right;
 	padding-right : 2em !important;
-}
-
-
-.ui-block-a {
-	width : 20% !important;
 }
 
 .popup-acao {
@@ -129,6 +121,16 @@ body {
 	.ui-content h3, .ui-content h3 span {
 		font-size: 13px;
 	}
+	.ui-block-a {
+		width : 30% !important;
+	}
+	.ui-block-b {
+		width : 70% !important;
+	}
+	.labelInput {
+		text-align: right;
+		padding-right : 0.5em !important;
+	}
 	.ui-btn-icon-left {
 		padding-left: 3.5em !important;
 	}
@@ -151,6 +153,16 @@ body {
 		max-width: 100%;
 		padding: 2px;
 		margin-left: 2px;
+	}
+	.ui-input-text, .input_text{
+		max-width : 30em !important;
+	}
+	.ui-block-a {
+		width : 20% !important;
+	}
+	.labelInput {
+		text-align: right;
+		padding-right : 2em !important;
 	}
 	.ui-btn-icon-left {
 		padding-left: 2.5em !important;

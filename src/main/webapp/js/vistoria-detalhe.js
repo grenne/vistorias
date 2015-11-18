@@ -55,6 +55,7 @@ $(function() {
 		var dataSaved = localStorage.getItem("dadosSaved");
 		var objJson = JSON.parse(dataSaved);
 		objJson.documento.id = id;
+		objJson.documento.situacao = "realizadas";
 		console.log (dataSaved);
 		console.log (JSON.stringify(objJson));
 		$.ajax({
