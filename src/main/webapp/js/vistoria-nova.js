@@ -32,6 +32,7 @@ $(document).ready(function() {
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();
+				$('a').listview('refresh');
             }
 		});
 	});

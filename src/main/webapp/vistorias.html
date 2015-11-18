@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/springboard.css" />
 <link rel="stylesheet" type="text/css" href="css/vistorias.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="css/Bootstrap.min.css">
 <link rel="stylesheet" href="css/snap.css">
@@ -37,12 +38,13 @@
 <script src="js/vistorias.js"></script>
 <script src="js/config.js"></script>
 <script src="js/less-1.6.1.min.js" type="text/javascript"></script>
+<script src="https://use.fonticons.com/18b8dedd.js"></script>
 <title>Vistorias</title>
 </head>
 <body data-theme="d">
 	<div id="conteudo-geral" data-theme="d">
 		<div data-role="header" data-position="fixed" >
-			<h1 class="titulo-pagina">Vistorias</h1>
+			<h1 class="titulo-pagina">Vistoriador</h1>
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext"
 				id="btn-mostra-menu">Menu</a>
 		</div>
@@ -66,38 +68,44 @@
 
 							<!-- row 1, column 1 -->
 							<div class="ui-block-a">
-								<a href="vistorias-lista.html?manutencao&pendente" rel="external" data-transition="flip"> 
-									<img src="css/images/nav/docs.png" class="springboard-portrait-img" />
-									<span></span>
-									<span>Pendentes</span>
+								<a href="vistorias-lista.html?manutencao&pendente&documento.usuarioAtual" rel="external" data-transition="flip"> 
+									<i class="fa fa-car fa-3x"> Pendentes</i>
 								</a>
 							</div>
 
 							<!-- row 1, column 2 -->
 							<div class="ui-block-b">
 								<a href="dialog-modelo-lista.html?vistoria-nova.html" rel="external" data-transition="flip"> 
-									<img src="css/images/nav/docs.png" class="springboard-portrait-img" />
-									<span></span>
-									<span>Nova</span>
+									<i class="fa fa-plus-circle fa-3x"> Nova</i>
 								</a>
 							</div>
-							<hr class="separador" />
-							<!-- row 1, column 2 -->
+							<h1 class="separadorNavegacao" ></h1>
+							<!-- row 2, column 1 -->
 							<div class="ui-block-a">
-								<a href="vistorias-lista.html?consulta&realizadas" rel="external" data-transition="flip"> <img
-									src="css/images/nav/home.png" class="springboard-portrait-img"></img>
-									<span></span>
-									<span>Realizadas</span>
+								<a href="vistorias-lista.html?consulta&realizadas&documento.usuarioAtual" rel="external" data-transition="flip">
+									<i class="fa fa-database fa-3x"> Realizadas</i>
 								</a>
 							</div>
-							<!-- row 1, column 2 -->
+							<!-- row 2, column 2 -->
 							<div class="ui-block-b">
-								<a href="#videos" data-transition="flip"> <img
-									src="css/images/nav/home.png" class="springboard-portrait-img"></img>
-									<span></span>
-									<span>Fechadas</span>
+								<a href="vistorias-lista.html?consulta&fechada&documento.usuarioAtual" rel="external" data-transition="flip">
+									<i class="fa fa-archive fa-3x"> Fechada</i>
 								</a>
 							</div>
+							<h1 class="separadorNavegacao" /></h1>
+							<!-- row 3, column 1 -->
+							<div class="ui-block-a">
+								<a href="vistorias-lista.html?consulta&realizadas&documento.usuarioAtual" rel="external" data-transition="flip">
+									<i class="fa fa-calculator fa-3x"> A faturar</i>
+								</a>
+							</div>
+							<!-- row 3, column 2 -->
+							<div class="ui-block-b">
+								<a href="vistorias-lista.html?consulta&fechadas&documento.usuarioAtual" rel="external" data-transition="flip">
+									<i class="fa fa-usd fa-3x"> Faturadas</i>
+								</a>
+							</div>
+							<h1 class="separadorNavegacao" /></h1>
 						</div>
 
 					</div>
@@ -115,28 +123,22 @@
 
 							<!-- row 1, column 1 -->
 							<div class="ui-block-a">
-								<a href="#friends" data-transition="flip"> <img
-									src="css/images/nav/docs.png" class="springboard-portrait-img" />
-									<span></span>
-									<span>Pendentes</span>
+								<a href="vistorias-lista.html?manutencao&pendente&documento.usuario.codigo" rel="external" data-transition="flip">
+									<i class="fa fa-car fa-3x"> Pendentes</i>
 								</a>
 							</div>
 
 							<!-- row 1, column 2 -->
 							<div class="ui-block-b">
-								<a href="#videos" data-transition="flip"> <img
-									src="css/images/nav/home.png" class="springboard-portrait-img"></img>
-									<span></span>
-									<span>Para encerrar</span>
+								<a href="#videos" data-transition="flip">
+									<i class="fa fa-envelope fa-3x"> Para encerrar</i>
 								</a>
 							</div>
-							<hr class="separador" />
+							<h1 class="separadorNavegacao" /></h1>
 							<!-- row 1, column 2 -->
 							<div class="ui-block-a">
-								<a href="#videos" data-transition="flip"> <img
-									src="css/images/nav/home.png" class="springboard-portrait-img"></img>
-									<span></span>
-									<span>Fechadas</span>
+								<a href="vistorias-lista.html?consulta&realizadas&&documento.usuario.codigo" rel="external" data-transition="flip"> 
+									<i class="fa fa-database fa-3x"> Realizadas</i>
 								</a>
 							</div>
 
@@ -156,18 +158,14 @@
 
 							<!-- row 1, column 1 -->
 							<div class="ui-block-a">
-								<a href="#friends" data-transition="flip"> <img
-									src="css/images/nav/docs.png" class="springboard-portrait-img" />
-									<span></span>
-									<span>Usuários</span>
+								<a href="#friends" data-transition="flip">
+									<i class="fa fa-users fa-3x"> Usuários</i>
 								</a>
 							</div>
 							<!-- row 1, column 2 -->
 							<div class="ui-block-b">
 								<a href="modelo-lista.html?modelo-administracao.html"  rel="external" data-transition="flip"> 
-									<img src="css/images/nav/docs.png" class="springboard-portrait-img" />
-									<span></span>
-									<span>Modelos</span>
+									<i class="fa fa-cogs fa-3x"> Modelos</i>
 								</a>
 							</div>
 

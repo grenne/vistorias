@@ -249,10 +249,6 @@ function inicializaWindow() {
 	$('.fieldcontain').fieldcontain().trigger('create');
 	// formata campos botoes
 	$('.line-button').button().trigger('create');
-	// formata campos botoes
-	$('ul').listview('refresh');
-	// formata campos botoes
-	$('a').listview('refresh');
 	// formata mascaras
 	$('.mesano').mask('00/0000');
 	$('.data').mask('00/00/0000');

@@ -21,6 +21,8 @@ $(document).ready(function() {
 					$('.line-button').button().trigger('create');
 				});
 				inicializaWindow();
+				$('ul').listview('refresh');
+				$('a').listview('refresh');
 			}
 		});
 	});
@@ -68,7 +70,23 @@ $(document).ready(function() {
 
 function montaLinha(i, modelos, id, nextPage) {
 	var labelId = modelos.modelo.replace( /\s/g, '' ) + "-" + i;
-	var linha = '' + 
+	var linha = 
+        '<li class="ui-body ui-body-b">' +
+			'<fieldset class="ui-grid-b">' +
+		    	'<a href="' + nextPage + '?id=' + id + '" rel="external" data-transition="flip" class="ui-block-a">' +
+		    	'<h2>' + modelos.modelo + '</h2>' +
+		    	'<p>' + modelos.situacao + '</p></a>' + 			
+				'<a id="alterarNomeButton-' + labelId + '-' + i + '" data-role="button" data-inline="true" data-theme="a" data-icon="gear" data-mini="true" class="ui-block-b line-button" style="float:right">Alterar Nome</a>' +
+				'<a id="excluirButton-' + labelId + '-' + i + '" data-role="button" data-inline="true" data-theme="a" data-icon="delete" data-mini="true" class="ui-block-c line-button" style="float:right">Exclui</a>' +
+            '</fieldset>' +
+		'</li>';
+
+/*	    '<li><a href="' + nextPage + '?id=' + id + '" rel="external" data-transition="flip">' +
+				'<h2>' + modelos.modelo + '</h2>' +
+				'<p>' + modelos.situacao + '</p></a>' + 
+				'<a id="alterarNomeButton-' + labelId + '-' + i + '" data-icon="delete" data-mini="true">Alterar Nome</a>' +
+				'<a id="excluirButton-' + labelId + '-' + i + '" data-theme="a" data-icon="delete" data-mini="true">Exclui</a>' +
+		'</li>';
 				'<tr>' +
 					'<td id="td-modelo-' + labelId + '">' +
 						'<a  href="' + nextPage + '?id=' + id +	'" rel="external"  data-transition="flip" class="labelModelo" >' + modelos.modelo + '</a>' +
@@ -84,6 +102,7 @@ function montaLinha(i, modelos, id, nextPage) {
 				'<tr>' +
 					'<td class="separador" />' +
 				'</tr>'
+*/
 	$("#table-modelos").append(linha);
     
     $('#excluirButton-' + labelId + '-' + i).bind( "click", function(event, ui) {

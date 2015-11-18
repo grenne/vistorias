@@ -17,14 +17,15 @@ function inicioPanel(panelId, panelLabel, i, panel, id, manutencao, inputDisable
 	var heightDetalhes = $(window).height() - 135 - $("#cabecalho-detalhes").height();
 	var montaScroll = 'style="overflow: scroll; width: 200px; height:' + heightDetalhes + 'px;"';
 	console.log ("height detalhes:" + heightDetalhes);
-	var linha = 
+	var linha = ''; 
+	linha = linha +
 		'<!-- ' + panel.label + ' -->' +			
 		'<div id="panel-' + panelId + '" ' + montaScroll + '">' +
 			'<h3 class="ui-bar ui-bar-d ui-corner-all">' + panel.label + '</h3>';
 	if (manutencao == "true"){
 		linha = linha +
 			'<div id="button-' + panelId + '">' +
-				'<a id="alteraNomeButton-' + panelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" class="line-button">Altera Nome</a>' +
+				'<a id="alteraNomeButton-' + panelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="gear" data-mini="true" class="line-button">Altera Nome</a>' +
 				'<a id="incluirButton-' + panelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" class="line-button">Novo Painel</a>' +
 				'<a id="excluirButton-' + panelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="delete" data-mini="true" class="line-button">Excluir</a>' +
 			'</div>'
@@ -108,7 +109,7 @@ function montaCabecalho(header, id, manutencao, inputDisabled ) {
 	$.each(header, 
 			function(i, header) {
 		var labelId = header.label.replace( /\s/g, '' ) + 1 + "-" + i;
-		montaCampos(i, "cabecalho", 999, header, "cabecalho", id, manutencao)
+		montaCampos(i, "cabecalho", 999, header, "cabecalho", id, manutencao, inputDisabled)
 	});
 };
 
@@ -340,7 +341,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			'<div class="ui-block-c">' +
 				'<a id="incluirButton-' + labelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" class="line-button">Campo Novo</a>' +
 				'<a id="excluirButton-' + labelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="delete" data-mini="true" class="line-button">Excluir</a>' +
-				'<a id="alterarButton-' + labelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="info" data-mini="true" class="line-button">Alterar</a>' +
+				'<a id="alterarButton-' + labelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="gear" data-mini="true" class="line-button">Alterar</a>' +
 			 '</div>';
 		$("#div-input-" + labelId).append(linha);
 	};

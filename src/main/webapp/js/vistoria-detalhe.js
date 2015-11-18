@@ -38,13 +38,14 @@ $(function() {
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel);
 					$.each(panel.fields, function(z, item){
-						montaCampos(i, panelId, z, item, "detalhes", id, manutencao, inputDisabled);
+						montaCampos(i, panelId, z, item, "detalhes", id, "false", inputDisabled);
 					});
 					finalPanel(panelId, panelLabel, i, panel);
 				});
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();
+				$('a').listview('refresh');
             }
 		});
 	});

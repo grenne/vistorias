@@ -5,10 +5,6 @@ $(document).ready(function() {
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
-	var urlBack = parametrosDaUrl.split("&")[2].split("$")[0] + '?' + parametrosDaUrl.split("$")[1]; 
-
-	// setar barra superior para voltar para pagina correta 
-	montaBarHeader(urlBack);	
 
 	$(function(){
 		$.ajax({
@@ -24,7 +20,7 @@ $(document).ready(function() {
         		$('.fieldcontain').fieldcontain().trigger('create');
 				var panelLabelList = [];
 				$.each(data.documento.panel, function(i, panel){
-					var panelId = panel.label.replace(" ", "") + i;
+					var panelId = panel.label.replace( /\s/g, '' ) + i;
 					var panelLabel = panel.label;
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel, id, "true");
@@ -38,26 +34,32 @@ $(document).ready(function() {
 				inicializaWindow();
             }
 		});
+		
+		$("#cancelarAlteracao" ).bind( "click", function(event, ui) {
+			window.location.reload();
+		});	
+		$("#cancelaNovoPainel" ).bind( "click", function(event, ui) {
+			window.location.reload();
+		});	
+
 	});	
 });
 
 function incluirOpcoes(opcao) {
 
 	$("#table-campos").append(
-			'<tr id="tr-opcoes' + numeroCampo +   '" class="opcoes">' +
-				'<td for="textinput-opcoes' + numeroCampo +  '" class="ui-input-text">Opção</td>' +
-				'<td id="td-textinput-opcoes">' +
-					'<input type="text" name="opcoes' + numeroCampo + '" id="opcoes' + numeroCampo +  '" value="' + opcao +  '" class="input-value" required data-inline="true"/>' +
-				'</td>' +
-				'<td id="button-opcoes' + numeroCampo +   '">' +
-					'<a id="incluirOpcao-' + numeroCampo +   '" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" class="line-button">Nova</a>' +
-					'<a id="excluirOpcao-' + numeroCampo +   '" data-role="button" data-inline="true" data-theme="a" data-icon="delete" data-mini="true" class="line-button">Exclui</a>' +
-				'</td>' +
-			'</tr>'					
+			'<fieldset id="div-opcoes' + numeroCampo +   '" class="opcoes ui-grid-c">' +
+				'<label for="textinput-opcoes' + numeroCampo +  '" class="labelInputAlign ui-block-a">Opção</label>' +
+				'<div class="ui-block-b">' +
+					'<input type="text" name="opcoes' + numeroCampo + '" id="opcoes' + numeroCampo + '" value="' + opcao +  '" class="input-value " required  data-inline="true"/>' +
+				'</div>' +
+				'<a id="incluirOpcao-' + numeroCampo +   '" data-role="button" data-inline="true" data-theme="a" data-icon="plus" data-mini="true" class="line-button ui-block-c" style="float:right">Nova</a>' +
+				'<a id="excluirOpcao-' + numeroCampo +   '" data-role="button" data-inline="true" data-theme="a" data-icon="delete" data-mini="true" class="line-button ui-block-d" style="float:right">Exclui</a>' +
+			'</fieldset>'					
 		);
 	var item = numeroCampo;
 	$('#excluirOpcao-' + item).bind( "click", function(event, ui) {
-		$('#tr-opcoes' + item).remove();
+		$('#div-opcoes' + item).remove();
     });
 	$('#incluirOpcao-' + numeroCampo).bind( "click", function(event, ui) {
 		incluirOpcoes("");

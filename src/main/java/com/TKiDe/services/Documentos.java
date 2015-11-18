@@ -60,7 +60,7 @@ public class Documentos {
 	@Path("/lista")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray ObterLista(@QueryParam("usuario") String usuario, @QueryParam("situacao") String situacao ) throws UnknownHostException, MongoException, ParseException {
+	public JSONArray ObterLista(@QueryParam("usuario") String usuario, @QueryParam("queryUsuario") String queryUsuario, @QueryParam("situacao") String situacao ) throws UnknownHostException, MongoException, ParseException {
 
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("documento");
@@ -68,9 +68,11 @@ public class Documentos {
 		BasicDBObject setQuery = new BasicDBObject();
 		setQuery.put("documento.tipo", "dados");
 		setQuery.append("documento.situacao", situacao);
-		setQuery.append("documento.usuarioAtual", usuario);
+		String teste = "documento.usuarios.codigo";
+		setQuery.append(queryUsuario, usuario);
 		DBCollection collection = db.getCollection("documentos");
 		DBCursor cursor = collection.find(setQuery);
+		cursor.sort(new BasicDBObject("documento.header[0].valor", 1));
 		JSONArray documentos = new JSONArray();
 		
 		while (((Iterator<DBObject>) cursor).hasNext()) {

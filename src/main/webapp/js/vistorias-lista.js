@@ -7,10 +7,11 @@ $(document).ready(function() {
 	var parametrosDaUrl = url.split("?")[1];
 	var tipoPagina = parametrosDaUrl.split("&")[0];
 	var situacao = parametrosDaUrl.split("&")[1];
+	var query = parametrosDaUrl.split("&")[2];
 	console.log ('pathPage --' + pathPage );
 	$(function() {
 		$.ajax({
-			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario + "&situacao=" + situacao,
+			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario + '&query=' + query + '&situacao=' + situacao,
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {
@@ -39,6 +40,7 @@ $(document).ready(function() {
 					$("#listaVistorias").append(x);
 				});
 				inicializaWindow();
+				$('ul').listview('refresh');
 			}
 		});
 	});

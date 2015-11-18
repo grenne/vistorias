@@ -16,6 +16,10 @@ body {
 	max-width : 30em !important;
 }
 
+#div-input-nomeCampo .ui-input-text {
+	max-width : 100% !important;
+}
+
 .labelInputAlign {
 	padding-top : 15px;
 }

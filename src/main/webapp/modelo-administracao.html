@@ -40,53 +40,53 @@
 	<form id="document">
 	    <div data-role="popup" id="popupIncluiInput" class="ui-content" data-theme="d" style="max-width:600px;">
 			<div id="popupII" class="tabela-detalhes">
-			  <h1>Novo Campo</h1>
-			   <table id="table-campos" >
-					<tr>
-						<td for="td-selecao" class="ui-input-text">Tipo</td>
-						<td id="td-selecao">
-							<div class="ui-field-contain">
-								<select name="select-tipos" id="select-tipos" data-mini="true" required class="selectOptions">
-									<option value="">Selecionar</option>
-									<option value="input_texto">Texto</option>
-									<option value="input_inteiro">Numérico Inteiro</option>
-									<option value="input_decimal">Numérico Decimal</option>
-									<option value="input_data">Data</option>
-									<option value="input_cpf">CPF</option>
-									<option value="input_cnpj">CNPJ</option>
-									<option value="input_celular">Celular</option>
-									<option value="input_telefone">Telefone</option>
-									<option value="input_placa">Placa</option>
-									<option value="input_checkbox">Checkbox</option>
-									<option value="input_select">Seleção</option>
-									<option value="input_radio">Radio</option>
-									<option value="input_radio_inline">Radio mesma linha</option>
-								</select>
-							</div>
-						</td>
-					</tr>					
-					<tr id="tr-nomeCampo">
-						<td for="nomeCampo"  class="ui-input-text">Nome campo</td>
-						<td id="td-nomeCampo">
-                			<input type="text" name="nomeCampo" id="nomeCampo" value="" class="input-value" required data-inline="true"/>
-						</td>
-					</tr>	
-			   </table>
-				<a href="#" id="confirmaAlteracao" data-role="button" data-inline="true" data-theme="a">Confirmar</a>
+			  <h3>Novo Campo</h3>
+			   <div id="table-campos" >
+					<div id="div-input-' + labelId +  '" class="vistoria-detalhes ui-grid-a">
+						<label for="nomeCampo" class="labelInputAlign ui-block-a">Tipo</label>
+						    <select name="select-tipos" id="select-tipos" class="ui-block-b"  data-mini="true">
+								<option value="">Selecionar</option>
+								<option value="input_texto">Texto</option>
+								<option value="input_inteiro">Numérico Inteiro</option>
+								<option value="input_decimal">Numérico Decimal</option>
+								<option value="input_data">Data</option>
+								<option value="input_cpf">CPF</option>
+								<option value="input_cnpj">CNPJ</option>
+								<option value="input_celular">Celular</option>
+								<option value="input_telefone">Telefone</option>
+								<option value="input_placa">Placa</option>
+								<option value="input_checkbox">Checkbox</option>
+								<option value="input_select">Seleção</option>
+								<option value="input_radio">Radio</option>
+								<option value="input_radio_inline">Radio mesma linha</option>
+						    </select>
+					</div>
+					<div id="div-input-nomeCampo" class="vistoria-detalhes ui-grid-a">
+						<label for="nomeCampo" class="labelInputAlign ui-block-a">Nome</label>
+						<div class="ui-block-b">
+                			<input type="text" name="nomeCampo" id="nomeCampo" value="" class="input-value " required  data-inline="true"/>
+                		</div>	
+					</div>
+			   </div>
+			   <fieldset id="div-Botoes" class="ui-grid-b">
+					<a href="#" id="confirmaAlteracao" data-role="button" data-inline="true" data-theme="a"  class="line-button ui-block-b">Confirmar</a>
+					<a href="#" id="cancelarAlteracao" data-role="button" data-inline="true" data-theme="a" class="line-button ui-block-c">Cancelar</a>
+				</fieldset>
 			</div>
  	   </div>
 	   <div data-role="popup" id="popupIncluiPainel" class="ui-content" data-theme="d" style="max-width:600px;">
 			<div id="popupII" class="tabela-detalhes">
-			  <h1>Painel</h1>
-			   <table id="table-painel" >
-					<tr id="tr-nomePainel">
-						<td for="nomePainel"  class="ui-input-text">Nome painel</td>
-						<td id="td-nomePainel">
-                			<input type="text" name="nomePainel" id="nomePainel" value="" class="input-value" required data-inline="true"/>
-						</td>
-					</tr>	
-			   </table>
-				<a href="#" id="confirmaNovoPainel" data-role="button" data-inline="true" data-theme="a">Confirmar</a>
+				<h3>Painel</h3>
+				<div id="div-input-painel" class="vistoria-detalhes ui-grid-a">
+					<label for="nomePainel" class="labelInputAlign ui-block-a">Nome</label>
+					<div class="ui-block-b">
+	           			<input type="text" name="nomePainel" id="nomePainel" value="" class="input-value " required  data-inline="true"/>
+	           		</div>	
+				</div>	
+				<fieldset id="div-Botoes-Painel" class="ui-grid-b">
+					<a href="#" id="confirmaNovoPainel" data-role="button" data-inline="true" data-theme="a"  class="line-button ui-block-b">Confirmar</a>
+					<a href="#" id="cancelaNovoPainel" data-role="button" data-inline="true" data-theme="a" class="line-button ui-block-c">Cancelar</a>
+				</fieldset>
 			</div>
  	   </div>
 	
