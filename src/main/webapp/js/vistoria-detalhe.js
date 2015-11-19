@@ -33,7 +33,7 @@ $(function() {
 				var heightCabecalho = $("#cabecalho-detalhes").height();
 				var panelLabelList = [];
 				$.each(data.documento.panel, function(i, panel){
-					var panelId = panel.label.replace(" ", "") + i;
+					var panelId = panel.label.replace( /\s/g, '' ) + i;
 					var panelLabel = panel.label;
 					panelLabelList[i] = panel.label;
 					inicioPanel(panelId, panelLabel, i, panel);

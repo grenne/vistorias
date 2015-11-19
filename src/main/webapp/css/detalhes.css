@@ -25,6 +25,9 @@ body {
 	text-align: right;
 	padding-right : 2em !important;
 }
+.input-value {
+	width: 100% !important;
+}
 
 .popup-acao {
 	width: 300px;

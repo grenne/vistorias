@@ -147,13 +147,13 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	if (item.modelo == 'input_texto') {
 		$("#div-input-" + labelId).append(
 					'<div class="ui-block-b">' +
-                		'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value " required ' + inputDisabled + ' data-inline="true"/>' +
+                		'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value " required ' + inputDisabled + ' data-inline="true" data-mini="true"/>' +
                 	'</div>'	
 		);
-	}else if(item.modelo == 'input_inteiro') {
+	}else if(item.modelo == 'input_textarea') {
 		$("#div-input-" + labelId).append(
 					'<div class="ui-block-b">' +
-						'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value input-number inteiro" required ' + inputDisabled + ' data-inline="true"/>' +
+						'<textarea type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '" class="input-value" required ' + inputDisabled + ' data-inline="true"/>' +
 					'</div>'	
 		);
 	}else if(item.modelo == 'input_decimal') {
@@ -165,7 +165,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	}else if(item.modelo == 'input_data') {
 		$("#div-input-" + labelId).append(
 					'<div class="ui-block-b">' +
-						'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="__/__/____" class="input-value input-number data" required ' + inputDisabled + ' data-inline="true"/>' + 
+						'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="__/__/____" class="input-value input-number data" required ' + inputDisabled + ' data-inline="true" data-role="date"/>' + 
 					'</div>'	
 		);
 	}else if(item.modelo == 'input_cpf') {
