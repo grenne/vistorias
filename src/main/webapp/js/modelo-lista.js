@@ -61,8 +61,13 @@ $(document).ready(function() {
     	
     	});	
     	$( "#popupIncluiModelo" ).popup( "open" );
+		
     });
 	
+	$("#cancelaNovoModelo" ).bind( "click", function(event, ui) {
+    	$( "#popupIncluiModelo" ).popup( "close" );
+	});	
+
 	// setar acao para botao submit
 
 

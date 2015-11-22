@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/detalhes.css" />
+<link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.min.css" />
 
 <link rel="stylesheet" href="css/Bootstrap.min.css">
 <link rel="stylesheet" href="css/snap.css">
@@ -32,6 +33,7 @@
 <script src="js/swipe.js"></script>
 <script src="js/modelo-administracao.js"></script>
 <script src="js/detalhes.js"></script>
+<script src="js/jasny-bootstrap.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/less-1.6.1.min.js" type="text/javascript"></script>
 <title>Vistoria</title>
@@ -44,7 +46,7 @@
 			   <div id="table-campos" >
 					<div id="div-input-' + labelId +  '" class="vistoria-detalhes ui-grid-a">
 						<label for="nomeCampo" class="labelInputAlign ui-block-a">Tipo</label>
-						    <select name="select-tipos" id="select-tipos" class="ui-block-b"  data-mini="true">
+						    <select name="select-tipos" id="select-tipos" class="ui-block-b"  data-mini="true" class="selectOptions"> 
 								<option value="">Selecionar</option>
 								<option value="input_texto">Texto</option>
 								<option value="input_textarea">Texto Area</option>
@@ -60,6 +62,7 @@
 								<option value="input_select">Seleção</option>
 								<option value="input_radio">Radio</option>
 								<option value="input_radio_inline">Radio mesma linha</option>
+								<option value="input_upload_image">Imagens</option>
 						    </select>
 					</div>
 					<div id="div-input-nomeCampo" class="vistoria-detalhes ui-grid-a">
@@ -125,3 +128,6 @@
 	</form>
 </body>
 </html>
+
+
+

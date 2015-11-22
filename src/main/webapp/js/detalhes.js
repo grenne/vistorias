@@ -198,6 +198,26 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 						'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="___-____" class="input-value input-number placa" required ' + inputDisabled + ' data-inline="true" data-mini="true"/>' +
 					'</div>'	
 					)
+	}else if(item.modelo == 'input_upload_image') {
+		$("#div-input-" + labelId).append(
+				'<div class="fileinput fileinput-new ui-block-b" data-provides="fileinput">' +
+				  '<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">' +
+				    '<img data-src="holder.js/100%x100%" alt="...">' +
+				  '</div>' +
+				  '<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>' +
+				  '<div class="ui-grid-a">' +
+					  '<span class="btn btn-default btn-file ui-block-a">' +
+					  	'<a id="incluirImagemButton-' + labelId + '" href="#" class="fileinput-new">Escolha uma foto</a>' +
+					  	'<a href="#" id="alterarImagemButton-' + labelId + '" class="fileinput-exists">Alterar foto</a>' +
+					  	'<input type="file" name="...">' +
+					  '</span>' +
+					  '<a href="#" id="removerImagemButton-' + labelId + '" class="btn btn-default fileinput-exists ui-block-b" data-dismiss="fileinput">Remover</a>' +
+					'</div>' +
+				'</div>'		
+				);
+	    $('#incluirImagemButton-' + labelId).bind( "click", function(event, ui) {
+	    	console.log ("botao incluir imagem");
+	    });
 	}else if(item.modelo == 'input_checkbox') {
 		var textChecked ="";
 		if (item.valor != "") {
