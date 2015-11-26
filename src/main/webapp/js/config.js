@@ -61,7 +61,7 @@ function executaLogin(urlServidor, cpfUsuario, senha) {
 
 	var urlFinal = urlServidor + metodoLogin + "?cpf=" + cpfUsuario + "&senha="
 			+ senha;
-
+	console.log ("executando login");
 	var resultado = "";
 	$('.msg-sucesso, .msg-erro').remove();
 	$(function(){
