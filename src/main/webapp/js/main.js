@@ -245,6 +245,8 @@ function colocaPainelEsquerda() {
 function inicializaWindow() {
 	// formata campos texto
 	$('input[type="text"]').textinput().trigger('create');
+	// formata campos texto
+	$('input[type="textarea"]').textinput().trigger('create');
 	// formata campos select
 	$('.fieldcontain').fieldcontain().trigger('create');
 	// formata campos botoes
@@ -304,7 +306,6 @@ function iniciaSnapper() {
         snapper.close();
     });
 };
-
 
 function mobileDetect() {
 	// device detection

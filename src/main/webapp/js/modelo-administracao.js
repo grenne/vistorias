@@ -5,12 +5,12 @@ $(document).ready(function() {
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
-	$("#teste").append(
-			
-			'<label class="control-label">Grenne</label>' + 
-			'<input id="input-1" type="file" class="file">'                
-	);
-	alert ("ready");
+//	$("#teste").append(
+//			
+//			'<label class="control-label">Grenne</label>' + 
+//			'<input id="input-1" type="file" class="file">'                
+//	);
+//	alert ("ready");
 
 
 	$(function(){
@@ -36,11 +36,11 @@ $(document).ready(function() {
 					});
 					finalPanel(panelId, panelLabel, i, panel, "true");
 				});
-				$("#teste").append(
-						'<label class="control-label">Grenne</label>' + 
-						'<input id="input-1" type="file" class="file">'                
-				);
-				alert ("ajax");
+//				$("#teste").append(
+//						'<label class="control-label">Grenne</label>' + 
+//						'<input id="input-1" type="file" class="file">'                
+//				);
+//				alert ("ajax");
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();

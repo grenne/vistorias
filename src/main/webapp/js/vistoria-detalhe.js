@@ -8,7 +8,7 @@ $(function() {
 	console.log ("$(window).width():" + $(window).width());
 	console.log ("$(document).width():" + $(document).width());
 	var tipoDevice = mobileDetect();
-	alert('You are using a mobile device!:' + tipoDevice);
+	console.log('You are using a mobile device!:' + tipoDevice);
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("&")[0];
@@ -45,7 +45,6 @@ $(function() {
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();
-				$('a').listview('refresh');
             }
 		});
 	});

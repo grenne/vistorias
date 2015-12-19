@@ -67,7 +67,7 @@ public class Documentos {
 
 		BasicDBObject setQuery = new BasicDBObject();
 		setQuery.put("documento.tipo", "dados");
-		setQuery.append("documento.situacao", situacao);
+//		setQuery.append("documento.situacao", situacao);
 		String teste = "documento.usuarios.codigo";
 		setQuery.append(queryUsuario, usuario);
 		DBCollection collection = db.getCollection("documentos");

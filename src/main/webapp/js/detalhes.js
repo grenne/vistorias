@@ -123,8 +123,10 @@ function finalPanel(panelId, panelLabel, i, panel, manutencao, inputDisabled) {
 };
 
 function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled) {
-	var labelId = item.label.replace( /\s/g, '' ) + z + "-" + i;
+	var labelId = item.label.replace( /\s/g, '' ).replace(/[^a-zA-Z 0-9]/g, '') + z + "-" + i;
 	var label = item.label;
+
+
 	var labelRadioId = "";
 
 	var tipoGrid = "ui-grid-a";
@@ -198,12 +200,12 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 						'<input type="text" name="' + labelId + '" id="' + labelId + '" value="' + item.valor + '"  placeholder="___-____" class="input-value input-number placa" required ' + inputDisabled + ' data-inline="true" data-mini="true"/>' +
 					'</div>'	
 					)
-	}else if(item.modelo == 'input_upload_image') {
-		$("#teste").append(
-				'<label class="control-label">Grenne</label>' + 
-				'<input id="input-1" type="file" class="file">'                
-		);
-		alert ("detalhes");
+//	}else if(item.modelo == 'input_upload_image') {
+//		$("#teste").append(
+//				'<label class="control-label">Grenne</label>' + 
+//				'<input id="input-1" type="file" class="file">'                
+//		);
+//		alert ("detalhes");
     }else if(item.modelo == 'input_checkbox') {
 		var textChecked ="";
 		if (item.valor != "") {
