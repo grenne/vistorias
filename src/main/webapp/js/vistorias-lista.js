@@ -1,7 +1,8 @@
 /* Documento Lista */
 
 $(document).ready(function() {
-    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
+	localStorage.urlServidor = window.location.hostname;
+    executaLogin(localStorage.urlServidor, localStorage.usuario, localStorage.senha);
     var pathPage = location.pathname.split("/")[2];
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
@@ -12,7 +13,7 @@ $(document).ready(function() {
 	console.log ('checkbox --' + query );
 	$(function() {
 		$.ajax({
-			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.cpfUsuario + '&queryUsuario=' + query + '&situacao=' + situacao,
+			url : "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/lista?usuario=" + localStorage.usuario + '&queryUsuario=' + query + '&situacao=' + situacao,
 			contentType : "application/json; charset=utf-8",
 			dataType : 'json',
 			success : function(data) {

@@ -42,13 +42,12 @@ public class Documentos {
 	@Path("/login")	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public JSONObject login(@QueryParam("usuario") String usuario, @QueryParam("senha") String senha) throws UnknownHostException, MongoException {
+	public JSONObject login(@QueryParam("usuario") String usuario) throws UnknownHostException, MongoException {
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("documento");
 		DBCollection collection = db.getCollection("usuarios");
 		BasicDBObject setUsu = new BasicDBObject();
 		setUsu.put("usu.usuario",usuario);
-		setUsu.put("usu.senha",senha);
 		DBObject cursor = collection.findOne(setUsu);
 		JSONObject documento = new JSONObject();
 		BasicDBObject obj = (BasicDBObject) cursor.get("usu");
@@ -56,6 +55,95 @@ public class Documentos {
 		mongo.close();
 		return documento;
 	};
+	@Path("/incluir/usuario")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String IncluirUsuario(Usuario usuario)  {
+		Mongo mongo;
+		try {
+			mongo = new Mongo();
+			DB db = (DB) mongo.getDB("documento");
+			DBCollection collection = db.getCollection("usuarios");
+			Gson gson = new Gson();
+			String jsonDocumento = gson.toJson(usuario);
+			Map<String,String> mapJson = new HashMap<String,String>();
+			ObjectMapper mapper = new ObjectMapper();
+			mapJson = mapper.readValue(jsonDocumento, HashMap.class);
+			JSONObject documento = new JSONObject();
+			documento.putAll(mapJson);
+			DBObject insert = new BasicDBObject(documento);
+			collection.insert(insert);
+			//
+			// 			atualiza o id interno até eu descobrir como não precisar dele
+			//
+			usuario.usu.id = insert.get("_id").toString();
+			ObjectId _id = new ObjectId(insert.get("_id").toString());
+			jsonDocumento = gson.toJson(usuario);
+			mapJson = mapper.readValue(jsonDocumento, HashMap.class);
+			documento.putAll(mapJson);
+			BasicDBObject update = new BasicDBObject("$set", new BasicDBObject(documento));
+			BasicDBObject searchQuery = new BasicDBObject("_id",_id);
+			DBObject cursor = collection.findAndModify(searchQuery,
+	                null,
+	                null,
+	                false,
+	                update,
+	                true,
+	                false);
+			mongo.close();
+			return insert.get("_id").toString();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			System.out.println("UnknownHostException");
+			e.printStackTrace();
+		} catch (MongoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("MongoException");
+			e.printStackTrace();
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JsonParseException");
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			System.out.println("JsonMappingException");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException");
+			e.printStackTrace();
+		}
+		return "fail";
+		
+	};
+	@Path("/atualizar/usuario")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public String AtualizarDocumento(Usuario usuario) throws MongoException, JsonParseException, JsonMappingException, IOException {
+		ObjectId _id = new ObjectId(usuario.usu.id.toString());
+		Mongo mongo = new Mongo();
+		DB db = (DB) mongo.getDB("documento");
+		DBCollection collection = db.getCollection("usuarios");
+		Gson gson = new Gson();
+		String jsonDocumento = gson.toJson(usuario);
+		Map<String,String> mapJson = new HashMap<String,String>();
+		ObjectMapper mapper = new ObjectMapper();
+		mapJson = mapper.readValue(jsonDocumento, HashMap.class);
+		JSONObject documento = new JSONObject();
+		documento.putAll(mapJson);
+		BasicDBObject update = new BasicDBObject("$set", new BasicDBObject(documento));
+		BasicDBObject searchQuery = new BasicDBObject("_id",_id);
+		DBObject cursor = collection.findAndModify(searchQuery,
+                null,
+                null,
+                false,
+                update,
+                true,
+                false);
+		mongo.close();
+		return cursor.get("_id").toString();
+	};
+
 
 	@Path("/lista")	
 	@GET

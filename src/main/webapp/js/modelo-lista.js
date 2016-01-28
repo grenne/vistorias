@@ -1,7 +1,8 @@
 /* Modelos Lista */
 
 $(document).ready(function() {
-    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
+	localStorage.urlServidor = window.location.hostname;
+    executaLogin(localStorage.urlServidor, localStorage.usuario, localStorage.senha);
 	var url   = window.location.search.replace();
 	var nextPage = url.split("?")[1];
 	$(function() {

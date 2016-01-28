@@ -1,6 +1,7 @@
 /* Documento Detalhes */
 $(document).ready(function() {   
-    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
+	localStorage.urlServidor = window.location.hostname;
+    executaLogin(localStorage.urlServidor, localStorage.usuario, localStorage.senha);
 	var tipoDevice = mobileDetect();
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];

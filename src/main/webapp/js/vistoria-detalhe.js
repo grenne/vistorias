@@ -1,6 +1,7 @@
 /* Documento Detalhes */
 $(function() {
-    executaLogin(localStorage.urlServidor, localStorage.cpfUsuario, localStorage.senha);
+	localStorage.urlServidor = window.location.hostname;
+    executaLogin(localStorage.urlServidor, localStorage.usuario, localStorage.senha);
 
     // acertar o tamanha da tela
 	console.log ("$(window).height:()" + $(window).height());
