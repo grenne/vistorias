@@ -1,0 +1,43 @@
+@CHARSET "ISO-8859-1";
+
+
+.fa {
+	align:left;
+}
+.fa-plus-circle {
+	color:red;
+}
+
+.fa-car {
+	color:gold;
+}
+
+.fa-database {
+	color:violet;
+}
+
+
+
+.fa-archive{
+	color:orange;
+}
+
+.fa-calculator{
+	color:gray;
+}
+
+.fa-usd{
+	color:blue;
+}
+
+.fa-envelope {
+	color:cyan;
+}
+
+.fa-users {
+	color:blueviolet;
+}
+
+.fa-cogs {
+	color:black;
+}

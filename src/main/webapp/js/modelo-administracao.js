@@ -80,6 +80,8 @@ function incluirOpcoes(opcao) {
 	
 	// formata campos texto
 	$('input[type="text"]').textinput().trigger('create');
+	// formata campos file
+	$('input[type="file"]').textinput().trigger('create');
 	// formata campos botoes
 	$('.line-button').button().trigger('create');
 	

@@ -26,6 +26,7 @@
 <link href="font-awesome-4.0.3/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href="css/listview-grid.css" rel="stylesheet">
+<link href="css/fontawesome.css" rel="stylesheet">
 
 <script src="js/jquery.js"></script>
 <script src="js/jquery.mobile-1.4.5.min.js"></script>
@@ -48,6 +49,10 @@
 			<a href="#nav-panel" data-icon="bars" data-iconpos="notext"
 				id="btn-mostra-menu">Menu</a>
 		</div>
+		<div id="bar-footer" data-role="footer" data-position="fixed">
+			<a href="#" data-icon="carat-l" data-iconpos="notext" id="btn-nav-left" class="btn-footer">Left</a>
+			<a href="#" data-icon="carat-r" data-iconpos="notext" id="btn-nav-right" class="btn-footer">Right</a>
+		</div>
 		<!-- /header -->
 		<div role="main" class="ui-content jqm-content jqm-fullwidth">
 			<div id="cabecalho-detalhes"></div>
@@ -68,40 +73,40 @@
 
 							<!-- row 1, column 1 -->
 							<div class="ui-block-a">
-								<a href="vistorias-lista.html?manutencao&pendente&documento.usuarioAtual&link" rel="external" data-transition="flip"> 
+								<a href="vistorias-lista.html?manutencao&pendente&documento.usuarioAtual&link" rel="external" data-transition="flip" class="navegacao"> 
 									<i class="fa fa-car fa-3x"> Pendentes</i>
 								</a>
 							</div>
 
 							<!-- row 1, column 2 -->
 							<div class="ui-block-b">
-								<a href="dialog-modelo-lista.html?vistoria-nova.html" rel="external" data-transition="flip"> 
+								<a href="dialog-modelo-lista.html?vistoria-nova.html" rel="external" data-transition="flip" class="navegacao"> 
 									<i class="fa fa-plus-circle fa-3x"> Nova</i>
 								</a>
 							</div>
 							<h1 class="separadorNavegacao" ></h1>
 							<!-- row 2, column 1 -->
 							<div class="ui-block-a">
-								<a href="vistorias-lista.html?manutencao&realizadas&documento.usuarioAtual&link" rel="external" data-transition="flip">
+								<a href="vistorias-lista.html?manutencao&realizadas&documento.usuarioAtual&link" rel="external" data-transition="flip" class="navegacao">
 									<i class="fa fa-database fa-3x"> Realizadas</i>
 								</a>
 							</div>
 							<!-- row 2, column 2 -->
 							<div class="ui-block-b">
-								<a href="vistorias-lista.html?consulta&fechada&documento.usuarioAtual&link" rel="external" data-transition="flip">
+								<a href="vistorias-lista.html?consulta&fechada&documento.usuarioAtual&link" rel="external" data-transition="flip" class="navegacao">
 									<i class="fa fa-archive fa-3x"> Fechada</i>
 								</a>
 							</div>
 							<h1 class="separadorNavegacao" /></h1>
 							<!-- row 3, column 1 -->
 							<div class="ui-block-a">
-								<a href="vistorias-lista.html?consulta&realizadas&documento.usuarioAtual&link" rel="external" data-transition="flip">
+								<a href="vistorias-lista.html?consulta&realizadas&documento.usuarioAtual&link" rel="external" data-transition="flip" class="navegacao">
 									<i class="fa fa-calculator fa-3x"> A faturar</i>
 								</a>
 							</div>
 							<!-- row 3, column 2 -->
 							<div class="ui-block-b">
-								<a href="vistorias-lista.html?consulta&fechadas&documento.usuarioAtual&link" rel="external" data-transition="flip">
+								<a href="vistorias-lista.html?consulta&fechadas&documento.usuarioAtual&link" rel="external" data-transition="flip" class="navegacao">
 									<i class="fa fa-usd fa-3x"> Faturadas</i>
 								</a>
 							</div>

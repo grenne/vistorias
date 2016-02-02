@@ -103,7 +103,7 @@ function colocaPainelEsquerda() {
             '</ul>' +
         '</div>';
     
-        $('div:jqmData(role="page")').append(painelEsquerdaHtml);
+        $("div[data-role='page']").append(painelEsquerdaHtml);
 }
 
 
@@ -247,6 +247,8 @@ function inicializaWindow() {
 	$('input[type="text"]').textinput().trigger('create');
 	// formata campos texto
 	$('input[type="textarea"]').textinput().trigger('create');
+	// formata campos file
+	$('input[type="file"]').textinput().trigger('create');
 	// formata campos select
 	$('.fieldcontain').fieldcontain().trigger('create');
 	// formata campos botoes

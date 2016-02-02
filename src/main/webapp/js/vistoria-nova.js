@@ -41,10 +41,10 @@ $(document).ready(function() {
 	$( ".submitButton" ).bind( "click", function(event, ui) {
 		var dataSaved = localStorage.getItem("dadosSaved");
 		var objJson = JSON.parse(dataSaved);
-		objJson.documento.usuarioAtual = localStorage.cpfUsuario;
-		objJson.documento.tipo = "dados";
+		objJson.documento.usuarioAtual = localStorage.usuario;
+		objJson.documento.tipo = "dadosvistoria";
 		objJson.documento.situacao = "pendente";
-		objJson.documento.usuarios[0].codigo = localStorage.cpfUsuario;
+		objJson.documento.usuarios[0].codigo = localStorage.usuario;
 		console.log (dataSaved);
 		console.log (JSON.stringify(objJson));
 		

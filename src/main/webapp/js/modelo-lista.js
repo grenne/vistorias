@@ -35,7 +35,7 @@ $(document).ready(function() {
     		var new_modelo = '{"documento" :' + 
     						'{' +
     						'"id": "",' +
-    						'"tipo": "modelo",' +
+    						'"tipo": "modelovistoria",' +
     						'"usuarioAtual":"' + localStorage.cpfUsuario + '",' +
     						'"modelo": "' + $('#nomeModelo').val() + '",' +
     						'"situacao": "valido",' +

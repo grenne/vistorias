@@ -3,7 +3,13 @@ $(document).ready(function() {
 	localStorage.urlServidor = window.location.hostname;
     executaLogin(localStorage.urlServidor, localStorage.usuario, localStorage.senha);
     iniciaSnapper();
-    iniciaAcoes();     
+    iniciaAcoes();
+	$("#btn-nav-right").bind( "click", function(event, ui) {
+		window.mySwipe.next();
+	});
+	$("#btn-nav-left").bind( "click", function(event, ui) {
+		window.mySwipe.prev();
+	});    
 });
 
 /* Utilizada biblioteca Swipe.js: http://swipejs.com/ */
