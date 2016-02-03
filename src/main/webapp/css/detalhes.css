@@ -26,8 +26,11 @@ body {
 	padding-right : 2em !important;
 }
 .imgUpload {
-	align: center;
-	margin-top : 50em !important;
+  width: 100px;
+  height: 100px;
+  background: url(images/loading.gif); 2% no-repeat;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 .input-value {
 	width: 100% !important;

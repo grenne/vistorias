@@ -10,13 +10,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.activation.MimetypesFileTypeMap;
 import javax.inject.Singleton;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -47,8 +50,30 @@ import com.mongodb.MongoException;
 // @Lock(LockType.READ)
 @Path("/documento")
 public class Documentos {	
-
-		private final String UPLOADED_FILE_PATH = "C:/jboss/standalone/deployments/vistorias.war/recursos/";
+		/**
+		 * Procura a imagem pelo seu nome e devolve como resposta.
+		 * @author magician
+		 *
+	     * Devolve a imagem com o mime type do ficheiro ou 404 caso
+	     * o ficheiro não seja encontrada.
+	     * @param image nome da imagem a procurar
+	     * @return imagem com o mime type da imagem fonte.
+	     */
+		@GET
+		@Path("/images")
+	    @Produces("image/*")
+	    public Response getImage(@QueryParam("image") String image){
+	 
+	        String tmp = "c:/imagens/vistoria/";
+	        File target = new File(tmp + image);
+	        if(!target.exists()){
+	            throw new WebApplicationException(404);
+	        }
+	        String mt = new MimetypesFileTypeMap().getContentType(target);
+	        return Response.ok(target, mt).build();
+	    }
+	 
+		private final String UPLOADED_FILE_PATH = "c:/imagens/vistoria/";
 		
 		@POST
 		@Path("/upload")

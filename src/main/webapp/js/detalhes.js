@@ -305,7 +305,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			        			'<option value="' + item_select.label + '" ' + textSelected + ' class="input_text">' + item_select.label + '</option>' 
 			);
 		});
-		$("#select-" + labelId).click(function() {
+		$("#select-" + labelId).change(function() {
 			if($("#select-" + labelId).val() == "Selecionar"){
 				$("#select-" + labelId).val("");
 			};
@@ -337,10 +337,20 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			'    </div> ' +
 			'    <!-- The container for the uploaded files --> ' +
 			'    <div id="files-' + labelId + '" class="input-value files "> ' +
-			'    	<img id="img-' + labelId + '"src="http://' + localStorage.urlServidor + ':8080/vistorias/recursos/' + item.valor + '" height="100" width="100"/>' +
+			'    	<img id="img-' + labelId + '" class=imgUpload>' +
 			'    </div> ';
 		$("#div-input-" + labelId).append(uploadImagens);
-		// formata campos file
+		if (manutencao != "true"){
+			//Carregar imagem
+			var $image = $('#img-' + labelId).first();
+			var $downloadingImage = $("<img>");
+			$downloadingImage.load(function(){
+			  $image.attr("src", $(this).attr("src"));	
+			});
+			$downloadingImage.attr("src", "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/images?image=" + item.valor);
+		};
+		
+		// formata campos img
 		$('input[type="file"]').textinput().trigger('create');
 	    var url = "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/upload?prefix=" + id + "_" + labelId,
         uploadButton = $('<button/>')
