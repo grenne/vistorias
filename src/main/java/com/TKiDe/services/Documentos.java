@@ -48,7 +48,7 @@ import com.mongodb.MongoException;
 @Path("/documento")
 public class Documentos {	
 
-		private final String UPLOADED_FILE_PATH = "C:/dev/JBoss wildfly-10.0.0.CRI/standalone/deployments/vistorias.war/recursos/pes-fotos/";
+		private final String UPLOADED_FILE_PATH = "C:/jboss/standalone/deployments/vistorias.war/recursos/";
 		
 		@POST
 		@Path("/upload")

@@ -25,6 +25,10 @@ body {
 	text-align: right;
 	padding-right : 2em !important;
 }
+.imgUpload {
+	align: center;
+	margin-top : 50em !important;
+}
 .input-value {
 	width: 100% !important;
 }

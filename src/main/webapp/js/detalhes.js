@@ -141,11 +141,17 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 		labelInputCSS = labelInputCSS + " labelInputAlign";
 	};
 	
-	$("#table-" + panelId).append(
-			'<div id="div-input-' + labelId +  '" class="' + tipoGrid + '">' +
-				'<label for="' + labelId + '" class="' + labelInputCSS  + ' ui-block-a">' + label + '</label>'
-	);
-
+	if (item.modelo == 'input_upload_image') {
+		$("#table-" + panelId).append(
+				'<div id="div-input-' + labelId +  '" class="' + tipoGrid + '">'
+		);
+	}else{
+		$("#table-" + panelId).append(
+				'<div id="div-input-' + labelId +  '" class="' + tipoGrid + '">' +
+					'<label for="' + labelId + '" class="' + labelInputCSS  + ' ui-block-a">' + label + '</label>'
+		);
+	};
+	
 	if (item.modelo == 'input_texto') {
 		$("#div-input-" + labelId).append(
 					'<div class="ui-block-b">' +
@@ -315,22 +321,23 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 		$("#div-input-" + labelId).append(
 						'</select>');
 	}else if(item.modelo == 'input_upload_image') {
-		var uploadImagens = 
+		var uploadImagens =
+			'    <br> ' +
 			'	<!-- The fileinput-button span is used to style the file input field as button --> ' +
-			'    <span class="btn btn-success fileinput-button"> ' +
+			'    <span class="btn btn-success fileinput-button "> ' +
 			'        <i class="glyphicon glyphicon-plus"></i> ' +
-			'        <span>Carrega ' + label + '...</span> ' +
+			'        <span>' + label + '...</span> ' +
 			'        <!-- The file input field used as target for the file upload widget --> ' +
 			'        <input id="upload-img-' + labelId + '" type="file" name="uploadedFile" > ' +
 			'    </span> ' +
 			'    <br> ' +
 			'    <!-- The global progress bar --> ' +
-			'   <div id="progress" class="progress"> ' +
+			'   <div id="progress-' + labelId + '" class="progress"> ' +
 			'       <div class="progress-bar progress-bar-success"></div> ' +
 			'    </div> ' +
 			'    <!-- The container for the uploaded files --> ' +
-			'    <div id="files-' + labelId + '" class="files"> ' +
-			'    <img id="img-' + labelId + '"src="http://localhost:8080/vistorias/recursos/pes-fotos/' + item.valor + '" height="100" width="100"/>' +
+			'    <div id="files-' + labelId + '" class="input-value files "> ' +
+			'    	<img id="img-' + labelId + '"src="http://' + localStorage.urlServidor + ':8080/vistorias/recursos/' + item.valor + '" height="100" width="100"/>' +
 			'    </div> ';
 		$("#div-input-" + labelId).append(uploadImagens);
 		// formata campos file
@@ -408,7 +415,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	        }
 	    }).on('fileuploadprogressall', function (e, data) {
 	        var progress = parseInt(data.loaded / data.total * 100, 10);
-	        $('#progress .progress-bar').css(
+	        $('#progress-' + labelId + ' .progress-bar').css(
 	            'width',
 	            progress + '%'
 	        );
