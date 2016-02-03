@@ -321,16 +321,17 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			'        <i class="glyphicon glyphicon-plus"></i> ' +
 			'        <span>Carrega ' + label + '...</span> ' +
 			'        <!-- The file input field used as target for the file upload widget --> ' +
-			'        <input id="' + labelId + '" type="file" name="uploadedFile" multiple value="' + id + '_' + labelId + '"> ' +
+			'        <input id="upload-img-' + labelId + '" type="file" name="uploadedFile" > ' +
 			'    </span> ' +
-			'    <br> ' +
 			'    <br> ' +
 			'    <!-- The global progress bar --> ' +
 			'   <div id="progress" class="progress"> ' +
 			'       <div class="progress-bar progress-bar-success"></div> ' +
 			'    </div> ' +
 			'    <!-- The container for the uploaded files --> ' +
-			'    <div id="files-' + labelId + '" class="files"></div> ';
+			'    <div id="files-' + labelId + '" class="files"> ' +
+			'    <img id="img-' + labelId + '"src="http://localhost:8080/vistorias/recursos/pes-fotos/' + item.valor + '" height="100" width="100"/>' +
+			'    </div> ';
 		$("#div-input-" + labelId).append(uploadImagens);
 		// formata campos file
 		$('input[type="file"]').textinput().trigger('create');
@@ -342,6 +343,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
             .on('click', function () {
                 var $this = $(this),
                     data = $this.data();
+                delete data.form;
                 $this
                     .off('click')
                     .text('Abort')
@@ -353,10 +355,12 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
                     $this.remove();
                 });
             });
-	    $('#' + labelId).fileupload({
+	    $('#upload-img-' + labelId).fileupload({
 	        url: url,
 	        dataType: 'multipart/form-data',
-	        autoUpload: false,
+	        autoUpload: true,
+	        singleFileUploads: true,
+	        redirect: false,
 	        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
 	        maxFileSize: 999000,
 	        // Enable image resizing, except for Android and Opera,
@@ -368,16 +372,20 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	        previewMaxHeight: 100,
 	        previewCrop: true
 	    }).on('fileuploadadd', function (e, data) {
-	        data.context = $('<div/>').appendTo('#files-' + labelId);
+	    	$('#img-div-' + labelId).remove();
+	    	data.context = $('<div id="img-div-' + labelId + '"/>').appendTo('#files-' + labelId);
 	        $.each(data.files, function (index, file) {
 	            var node = $('<p/>')
 	                    .append($('<span/>').text(file.name));
-	            if (!index) {
-	                node
-	                    .append('<br>')
-	                    .append(uploadButton.clone(true).data(data));
-	            }
 	            node.appendTo(data.context);
+				obj = JSON.parse(localStorage.getItem("dadosSaved"));
+				if (z != 999){
+					obj.documento.panel[i].fields[z].valor =  id + "_" + labelId + "_" + file.name;
+				}else{
+					obj.documento.header[i].valor =  id + "_" + labelId + "_" + file.name;
+				};
+		        localStorage.setItem("dadosSaved", JSON.stringify(obj));
+		        $('#img-' + labelId).remove();
 	        });
 	    }).on('fileuploadprocessalways', function (e, data) {
 	        var index = data.index,
@@ -421,10 +429,6 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	        });
 	    }).on('fileuploadfail', function (e, data) {
 	        $.each(data.files, function (index) {
-	            var error = $('<span class="text-danger"/>').text('File upload failed.');
-	            $(data.context.children()[index])
-	                .append('<br>')
-	                .append(error);
 	        });
 	    }).prop('disabled', !$.support.fileInput)
 	        .parent().addClass($.support.fileInput ? undefined : 'disabled');

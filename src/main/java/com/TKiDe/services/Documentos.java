@@ -20,6 +20,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.apache.commons.io.IOUtils;
 import org.bson.types.ObjectId;
@@ -56,7 +57,6 @@ public class Documentos {
 			String fileName = "";
 			Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
 			List<InputPart> inputParts = uploadForm.get("uploadedFile");
-
 			for (InputPart inputPart : inputParts) {
 
 				try {
