@@ -6,14 +6,6 @@ $(document).ready(function() {
 	var url   = window.location.search.replace();
 	var parametrosDaUrl = url.split("?")[1];
 	var id = parametrosDaUrl.split("=")[1];
-//	$("#teste").append(
-//			
-//			'<label class="control-label">Grenne</label>' + 
-//			'<input id="input-1" type="file" class="file">'                
-//	);
-//	alert ("ready");
-
-
 	$(function(){
 		$.ajax({
             url: "http://" + localStorage.urlServidor + ":8080/vistorias/rest/documento/obter?id=" + id,
@@ -37,11 +29,6 @@ $(document).ready(function() {
 					});
 					finalPanel(panelId, panelLabel, i, panel, "true");
 				});
-//				$("#teste").append(
-//						'<label class="control-label">Grenne</label>' + 
-//						'<input id="input-1" type="file" class="file">'                
-//				);
-//				alert ("ajax");
 			    iniciaSnapper();
 			    iniciaAcoes(panelLabelList);        
 				inicializaWindow();

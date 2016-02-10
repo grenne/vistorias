@@ -143,7 +143,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	
 	if (item.modelo == 'input_upload_image') {
 		$("#table-" + panelId).append(
-				'<div id="div-input-' + labelId +  '" class="' + tipoGrid + '">'
+				'<div id="div-input-' + labelId +  '" class="">'
 		);
 	}else{
 		$("#table-" + panelId).append(
@@ -328,7 +328,7 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			'        <i class="glyphicon glyphicon-plus"></i> ' +
 			'        <span>' + label + '...</span> ' +
 			'        <!-- The file input field used as target for the file upload widget --> ' +
-			'        <input id="upload-img-' + labelId + '" type="file" name="uploadedFile" > ' +
+			'        <input id="upload-img-' + labelId + '" type="file" name="uploadedFile" class="imgUpload"> ' +
 			'    </span> ' +
 			'    <br> ' +
 			'    <!-- The global progress bar --> ' +
@@ -337,13 +337,13 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 			'    </div> ' +
 			'    <!-- The container for the uploaded files --> ' +
 			'    <div id="files-' + labelId + '" class="input-value files "> ' +
-			'    	<img id="img-' + labelId + '" class=imgUpload>' +
+			'    	<img id="img-' + labelId + '" class="imgUpload">' +
 			'    </div> ';
 		$("#div-input-" + labelId).append(uploadImagens);
 		if (manutencao != "true"){
 			//Carregar imagem
 			var $image = $('#img-' + labelId).first();
-			var $downloadingImage = $("<img>");
+			var $downloadingImage = $('#img-' + labelId);
 			$downloadingImage.load(function(){
 			  $image.attr("src", $(this).attr("src"));	
 			});
@@ -385,15 +385,15 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 	        // send Blob objects via XHR requests:
 	        disableImageResize: /Android(?!.*Chrome)|Opera/
 	            .test(window.navigator.userAgent),
-	        previewMaxWidth: 100,
-	        previewMaxHeight: 100,
+	        previewMaxWidth: 300,
+	        previewMaxHeight: 300,
 	        previewCrop: true
 	    }).on('fileuploadadd', function (e, data) {
 	    	$('#img-div-' + labelId).remove();
 	    	data.context = $('<div id="img-div-' + labelId + '"/>').appendTo('#files-' + labelId);
 	        $.each(data.files, function (index, file) {
 	            var node = $('<p/>')
-	                    .append($('<span/>').text(file.name));
+	                    .append("");
 	            node.appendTo(data.context);
 				obj = JSON.parse(localStorage.getItem("dadosSaved"));
 				if (z != 999){
@@ -486,6 +486,8 @@ function montaCampos(i, panelId, z, item, origem, id, manutencao, inputDisabled)
 				'<a id="alterarButton-' + labelId + '" data-role="button" data-inline="true" data-theme="a" data-icon="gear" data-mini="true" class="line-button">Alterar</a>' +
 			 '</div>';
 		$("#div-input-" + labelId).append(linha);
+		// formata campos botoes
+		$('.line-button').button().trigger('create');
 	};
 	
 

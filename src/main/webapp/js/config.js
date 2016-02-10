@@ -146,8 +146,6 @@ function executaLogin(urlServidor, usuario, senha, inicialLogin) {
         .fail(function(data) {
 			localStorage.usuario = usuario;
 			localStorage.senha = senha;
-			localStorage.usuario = usuario;
-			
        		if (localStorage.device == "mobile"){
 //       			alert("Não foi possível executar login.");		
        		}else{

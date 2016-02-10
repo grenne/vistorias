@@ -9,7 +9,10 @@ $(document).ready(function() {
 	});
 	$("#btn-nav-left").bind( "click", function(event, ui) {
 		window.mySwipe.prev();
-	});    
+	});   
+	if (mobileDetect()){
+		$(".fa").removeClass ("fa-3x").addClass("fa-2x");
+	}
 });
 
 /* Utilizada biblioteca Swipe.js: http://swipejs.com/ */

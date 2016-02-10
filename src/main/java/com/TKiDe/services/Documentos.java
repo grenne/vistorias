@@ -157,6 +157,7 @@ public class Documentos {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONObject login(@QueryParam("usuario") String usuario) throws UnknownHostException, MongoException {
+		System.out.println(usuario);
 		Mongo mongo = new Mongo();
 		DB db = (DB) mongo.getDB("documento");
 		DBCollection collection = db.getCollection("usuarios");
@@ -169,6 +170,7 @@ public class Documentos {
 		mongo.close();
 		return documento;
 	};
+
 	@Path("/incluir/usuario")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
